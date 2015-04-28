@@ -1,0 +1,25 @@
+default: &default
+    host: localhost
+    username: root
+    password: daijun
+    port: 3306
+    database: michaelblog
+    pool: 5
+    socket: /var/run/mysql.socket
+    encoding: utf-8
+    reconnect: false
+
+development:
+    <<: *default
+    database: dev_blog
+    reconnect: false
+
+test:
+    <<: *default
+    database: test_blog
+    reconnect: false
+
+production:
+    <<: *default
+    reconnect: true
+
