@@ -1,6 +1,6 @@
-class CreateBlogComments < ActiveRecord:Migration
+class CreateBlogComments < ActiveRecord::Migration
 	def up
-		create table :blog_comments do |t|
+		create_table :blog_comments do |t|
 			t.string "comment", :null => false
 			t.string "username", :null => false
 			t.string "email"

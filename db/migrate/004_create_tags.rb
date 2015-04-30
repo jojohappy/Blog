@@ -1,8 +1,8 @@
-class CreateTags < ActiveRecord:Migeration
+class CreateTags < ActiveRecord::Migration
 	def up
 		create_table :tags do |t|
 			t.string "tag_name"
-			t.datetiem "create_datetime"
+			t.datetime "create_datetime"
 		end
 	end
 

@@ -1,17 +1,18 @@
 default: &default
+    adapter: mysql2
     host: localhost
     username: michael
     password: daijun
     port: 3306
     database: michaelblog
     pool: 5
-    socket: /var/run/mysql.socket
-    encoding: utf-8
+    socket: /tmp/mysql.sock
+    encoding: utf8
     reconnect: false
 
 development:
     <<: *default
-    database: dev_blog
+    database: michaelblog
     reconnect: false
 
 test:
