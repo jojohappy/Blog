@@ -1,6 +1,10 @@
 source 'https://ruby.taobao.org/'
 
 gem 'sinatra'
-gem 'activerecord'
+gem 'activerecord', :require => 'active_record'
 gem 'mysql2'
 gem 'rake'
+gem 'sinatra-contrib'
+gem 'tilt', '~> 1.3.7'
+gem 'sinatra-partial'
+gem 'sinatra-static-assets'

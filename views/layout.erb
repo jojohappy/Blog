@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+		<title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
+		<link rel="shortcut icon" media="screen" type="image/x-icon" href="favicon.ico" />
+		<%= stylesheet_link_tag 'css/elusive-icons.css', 'css/bootstrap.min.css', 'css/common.css', 'css/index.css' %>
+	</head>
+	<body>
+		<div class="div-content">
+			<div class="div-content-main">
+				<div class="div-search-header">
+					<div class="div-search-form form-group">
+						<form action="/search" method="get" accept-charset="utf-8" class="search-form">
+		                    <button type="submit" class="search-icon el el-search"> </button>
+		                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
+		                </form>
+	                </div>
+				</div>
+				<div id="divLeft" class="div-left">
+					<div class="div-portrait">
+						<img class="img-portrait" src="images/my.png"/>
+					</div>
+					<ul class="person-info">
+						<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
+						<li><span class="span-career"><%= APP_CONFIG['my_career'] %></span></li>
+						<li><span class="span-location el el-map-marker"><%= APP_CONFIG['location'] %></span></li>
+					</ul>
+					<div class="div-category">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="gallery.html">Gallery</a></li>
+							<li><a href="">Archive</a></li>
+							<li><a href="">Tags</a></li>
+							<li><a href="">About</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="div-wrap">
+					<%= yield %>
+				</div>
+				<div class="load-more">
+					<span class="load-more-posts">Load more</span>
+				</div>
+				<div class="div-right">
+				</div>
+			</div>
+			<div class="div-footer">
+				<span class="span-copyright">
+					<div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
+				</span>
+				<div class="div-social-links">
+					<ul class="social-links">
+					  	<li><a class="github" href=""></a></li>
+					    <li><a class="weibo" href=""></a></li>
+					    <li><a class="googleplus" href=""></a></li>
+					    <li><a class="email" href=""></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<%= javascript_include_tag 'js/jquery.min.js', 'js/bootstrap.min.js', 'js/index.js' %>
+	</body>
+</html>
