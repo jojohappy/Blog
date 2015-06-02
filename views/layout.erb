@@ -4,8 +4,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
 		<title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
-		<link rel="shortcut icon" media="screen" type="image/x-icon" href="favicon.ico" />
-		<%= stylesheet_link_tag 'css/elusive-icons.css', 'css/bootstrap.min.css', 'css/common.css', 'css/index.css' %>
+		<link rel="shortcut icon" media="screen" type="image/x-icon" href="/favicon.ico" />
+		<%= stylesheet_link_tag 'css/elusive-icons.css', 'css/bootstrap.min.css',  'css/common.css', 'css/index.css' %>
 	</head>
 	<body>
 		<div class="div-content">
@@ -20,7 +20,7 @@
 				</div>
 				<div id="divLeft" class="div-left">
 					<div class="div-portrait">
-						<img class="img-portrait" src="images/my.png"/>
+						<img class="img-portrait" src="/images/my.png"/>
 					</div>
 					<ul class="person-info">
 						<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
@@ -30,10 +30,10 @@
 					<div class="div-category">
 						<ul>
 							<li><a href="/">Home</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="">Archive</a></li>
-							<li><a href="">Tags</a></li>
-							<li><a href="">About</a></li>
+							<li><a href="/gallery">Gallery</a></li>
+							<li><a href="/archive">Archive</a></li>
+							<li><a href="/tags">Tags</a></li>
+							<li><a href="/about">About</a></li>
 						</ul>
 					</div>
 				</div>

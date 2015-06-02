@@ -1,4 +1,4 @@
 get '/' do
-    @blogs = [{title: "title1"},{title: "title2"},{title: "title3"}]
-    erb :index
+    @blogs = Blogs.order('id Desc')
+    erb :'home/index'
 end

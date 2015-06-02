@@ -22,12 +22,14 @@ class MichaelDaiSite < Sinatra::Application
         set :static, true
         set :partial_template_engine, :erb
         use Rack::CommonLogger, logger
+        set :show_exceptions, true
     end
 
     configure :production do
     end
 
     # initialize ActiveRecord
+    ActiveRecord::Base.configurations = YAML::load(File.open('./config/database.yml'))
     ActiveRecord::Base.establish_connection YAML::load(File.open('./config/database.yml'))[ENV['RACK_ENV']]
 
     ActiveSupport.on_load(:active_record) do

@@ -11,5 +11,6 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sinatra/partial'
 require 'sinatra/static_assets'
+require 'github/markup'
 
 require './app'
