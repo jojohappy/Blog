@@ -70,7 +70,7 @@
   font-size: 14px; }
 
 .markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body li, .markdown-body table, .markdown-body pre {
-  margin: 15px 0; }
+  margin: 10px 0; }
 
 .markdown-body hr {
   background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;

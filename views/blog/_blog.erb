@@ -7,7 +7,7 @@
 	</div>
 	<div class="div-post-con">
 		<div class="div-title">
-			<a href="blog/1"><%= _blog.title %></a>
+			<%= link_to _blog.title, "blog/" + _blog.id.to_s %>
 		</div>
 		<div class="div-text">
 			在互联网行业，90后创业者作为一个群体强势崛起的今天，作为一个70后创业者，我们仿佛已经到了快退役的边缘。为此常常和朋友、投资人自嘲：我们这把老骨头，也只能做做亲子社交平台这样项目了，用户群体定位都是30岁以上的爸爸妈妈，要做年轻消费群体的项目，估计早就被90后创业者轰成渣了。
@@ -17,7 +17,7 @@
 			老骨头们害怕的是什么？害怕的是游戏规则被颠覆了，害怕的是我们所熟悉的，所驾轻就熟的，玩了无数遍玩得烂熟的成功经验，一夜之间就过时了，在后来者们构建起来的、新的游戏规则世界里，一向是强势群体的老...
 		</div>
 		<div class="div-info">
-			<a class="read-more-btn btn btn-primary" href="blog/1">Read more</a>
+			<%= link_to "Read more", "blog/" + _blog.id.to_s, :class => "read-more-btn btn btn-primary" %>
 			<div class="div-tag">
 				<i class="el el-tag"></i>
 				<ul class="post-tags-list">
@@ -29,7 +29,7 @@
 					</li>
 				</ul>
 			</div>
-			<a href="blog/3" class="a-comment-link el el-comment">0 Comments</a>
+			<%= link_to _blog.comment_count.to_s + " Comments", "blog/" + _blog.id.to_s, :class => "a-comment-link el el-comment" %>
 		</div>
 	</div>
 </div>
