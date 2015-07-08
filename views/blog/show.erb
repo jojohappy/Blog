@@ -1,24 +1,29 @@
 <%= stylesheet_link_tag 'css/github.css' %>
 <div class="div-post">
+	<div class="div-title">
+		<span><%= @blog.title %></span>
+	</div>
 	<div class="div-date-sider">
-		<div class="div-date-avatar">
-			<span class="span-month">MAR</span>
-			<span class="span-day">01</span>
+		<div class="ribbon">
+			<div class="container_div">
+				<div class="base">
+					<span class="span-date">MARCH 01, 2015</span>
+				</div>
+				<div class="left_corner"></div>
+				<div class="right_corner"></div>
+			</div>
 		</div>
 	</div>
 	<div class="div-post-con">
-		<div class="div-title">
-			<span><%= @blog.title %></span>
-		</div>
 		<div class="markdown-body div-text">
 			<%= @blog.md_content %>
 		</div>
 		<div class="div-info">
 			<div class="div-tag">
-				<i class="el el-tag"></i>
+				<i class="fa fa-tag"></i>
 				<ul class="post-tags-list">
 					<li>
-						<a href="" class="a-tag">life,</a>
+						<a href="" class="a-tag">&nbsp; life,</a>
 					</li>
 					<li>
 						<a href="" class="a-tag">python</a>
@@ -37,7 +42,7 @@
 					<div class="div-comment-person">
 						<img class="img-comment-portrait" src="../images/my.png">
 						<div class="div-person-info">
-							<span><a class="quote-tag el el-quote-right"></a></span>
+							<span><a class="quote-tag fa fa-quote-right"></a></span>
 							<span class="span-comment-person">Michael Dai</span>
 							<span class="span-comment-datetime">2015-04-11</span>
 						</div>
@@ -51,7 +56,7 @@
 						<div class="div-comment-person">
 							<img class="img-comment-portrait" src="../images/my.png">
 							<div class="div-person-info">
-								<span><a class="quote-tag el el-quote-right"></a></span>
+								<span><a class="quote-tag fa fa-quote-right"></a></span>
 								<span class="span-comment-person">Michael Dai</span>
 								<span class="span-comment-datetime">2015-04-11</span>
 							</div>
@@ -65,7 +70,7 @@
 							<div class="div-comment-person">
 								<img class="img-comment-portrait" src="../images/my.png">
 								<div class="div-person-info">
-									<span><a class="quote-tag el el-quote-right"></a></span>
+									<span><a class="quote-tag fa fa-quote-right"></a></span>
 									<span class="span-comment-person">Michael Dai</span>
 									<span class="span-comment-datetime">2015-04-11</span>
 								</div>
@@ -85,11 +90,13 @@
 							<input class="comment-input comment-user-form-input form-control" type="text" name="u" value="" placeholder="Name">
 							<input class="comment-input comment-email-form-input form-control" type="text" name="e" value="" placeholder="Email">
 							<textarea class="comment-input form-control" placeholder="Comment" rows="5"></textarea>
-							<div class="comment-btn">
-								<span>[评论可以使用Markdown格式]</span>
-								<button type="submit" class="btn btn-primary">Submit</button>
-								<button type="button" class="btn btn-default">Perview</button>
-							</div>
+							<div class="div-comment-b">
+					            <span>[评论可以使用Markdown格式]</span>
+					            <div class="div-comment-button">
+					                <button type="button" class="btn btn-default">Perview</button>
+					                <button type="submit" class="btn btn-primary">Submit</button>
+					            </div>
+					        </div>
 						</form>
 
 					</div>

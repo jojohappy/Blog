@@ -2,54 +2,68 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
 		<link rel="shortcut icon" media="screen" type="image/x-icon" href="/favicon.ico" />
-		<%= stylesheet_link_tag 'css/elusive-icons.css', 'css/bootstrap.min.css',  'css/common.css', 'css/index.css' %>
+		<%= stylesheet_link_tag 'css/font-awesome.css', 'css/bootstrap.min.css',  'css/common.css', 'css/index.css' %>
 	</head>
 	<body>
 		<div class="div-content">
-			<div class="div-content-main">
-				<div class="div-search-header">
-					<div class="div-search-form form-group">
-						<form action="/search" method="get" accept-charset="utf-8" class="search-form">
-		                    <button type="submit" class="search-icon el el-search"> </button>
-		                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
-		                </form>
-	                </div>
-				</div>
-				<div id="divLeft" class="div-left">
-					<div class="div-portrait">
-						<img class="img-portrait" src="/images/my.png"/>
+			<div class="div-content-main div-content-main-padding">
+				<div class="div-content-m">
+					<div class="div-header">
+						<div id="divSearchForm" class="div-search-form form-group">
+							<form action="/search" method="get" accept-charset="utf-8" class="search-form">
+			                    <button type="submit" class="search-icon fa fa-search"> </button>
+			                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
+			                </form>
+		                </div>
+		                <div class="div-m-form">
+		                	<div id="divMenu" class="menu-icon fa fa-bars"> </div>
+		                	<span id="spanBlogTitle" class="span-blog-title"><%= APP_CONFIG['site_title'] %></span>
+		                	<div id="divSearch" class="search-m-icon fa fa-search"> </div>
+		                </div>
 					</div>
-					<ul class="person-info">
-						<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
-						<li><span class="span-career"><%= APP_CONFIG['my_career'] %></span></li>
-						<li><span class="span-location el el-map-marker"><%= APP_CONFIG['location'] %></span></li>
-					</ul>
-					<div class="div-category">
-						<ul>
-							<li><a href="/">Home</a></li>
-							<li><a href="/gallery">Gallery</a></li>
-							<li><a href="/archive">Archive</a></li>
-							<li><a href="/tags">Tags</a></li>
-							<li><a href="/about">About</a></li>
-						</ul>
+					<div id="divLeft" class="div-left">
+						<div id="divLeftPortrait" class="div-left-portrait">
+							<div class="div-portrait">
+								<img class="img-portrait" src="/images/my.png"/>
+							</div>
+							<ul class="person-info">
+								<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
+								<li><span class="span-career"><%= APP_CONFIG['my_career'] %></span></li>
+								<li><span class="span-location fa fa-map-marker">&nbsp; <%= APP_CONFIG['location'] %></span></li>
+							</ul>
+						</div>
+						<div id="divCategory" class="div-category">
+							<ul>
+								<li><a href="/"><i class="fa fa-home fa-fw"></i><span>&nbsp; Home</span></a></li>
+								<li><a href="gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li>
+								<li><a href=""><i class="fa fa-archive fa-fw"></i><span>&nbsp; Archive</span></a></li>
+								<li><a href=""><i class="fa fa-tags fa-fw"></i><span>&nbsp; Tags</span></a></li>
+								<li><a href=""><i class="fa fa-user fa-fw"></i><span>&nbsp; About</span></a></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="div-wrap">
-					<%= yield %>
-				</div>
-				<div class="load-more">
-					<span class="load-more-posts">Load more</span>
-				</div>
-				<div class="div-right">
+					<div class="div-wrap">
+						<div class="div-wrap-header">
+							<div id="divSearchForm" class="div-search-form form-group">
+								<form action="/search" method="get" accept-charset="utf-8" class="search-form">
+				                    <button type="submit" class="search-icon fa fa-search"> </button>
+				                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
+				                </form>
+			                </div>
+		                </div>
+						<%= yield %>
+					</div>
+					<% if @blogs != nil %> 
+						<div class="load-more">
+							<button type="button" class="load-more-posts btn btn-default">Load more</button>
+						</div>
+					<% end %>
 				</div>
 			</div>
 			<div class="div-footer">
-				<span class="span-copyright">
-					<div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
-				</span>
 				<div class="div-social-links">
 					<ul class="social-links">
 					  	<li><a class="github" href=""></a></li>
@@ -57,6 +71,9 @@
 					    <li><a class="googleplus" href=""></a></li>
 					    <li><a class="email" href=""></a></li>
 					</ul>
+				</div>
+				<div class="div-copyright">
+					<div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
 				</div>
 			</div>
 		</div>

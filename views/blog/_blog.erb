@@ -1,15 +1,26 @@
+<%
+	creatTime = DateTime.strptime(_blog.create_datetime.to_s, '%Y-%m-%d %H:%M:%S')
+	day = _blog.create_datetime
+%>
+
 <div class="div-post">
+	<div class="div-title">
+		<%= link_to _blog.title, "blog/" + _blog.id.to_s %>
+	</div>
 	<div class="div-date-sider">
-		<div class="div-date-avatar">
-			<span class="span-month">MAR</span>
-			<span class="span-day">01</span>
+		<div class="ribbon">
+			<div class="container_div">
+				<div class="base">
+					<span class="span-date">MARCH 01, 2015</span>
+				</div>
+				<div class="left_corner"></div>
+				<div class="right_corner"></div>
+			</div>
 		</div>
 	</div>
 	<div class="div-post-con">
-		<div class="div-title">
-			<%= link_to _blog.title, "blog/" + _blog.id.to_s %>
-		</div>
 		<div class="div-text">
+			<!-- <%= _blog.content.to_s %> -->
 			在互联网行业，90后创业者作为一个群体强势崛起的今天，作为一个70后创业者，我们仿佛已经到了快退役的边缘。为此常常和朋友、投资人自嘲：我们这把老骨头，也只能做做亲子社交平台这样项目了，用户群体定位都是30岁以上的爸爸妈妈，要做年轻消费群体的项目，估计早就被90后创业者轰成渣了。
 
 			直到看到余佳文们，我不由得笑了，心里长长的松了一口气，如果90后创业者都是余佳文们，吾等老骨头们高枕无忧矣。
@@ -19,17 +30,17 @@
 		<div class="div-info">
 			<%= link_to "Read more", "blog/" + _blog.id.to_s, :class => "read-more-btn btn btn-primary" %>
 			<div class="div-tag">
-				<i class="el el-tag"></i>
+				<i class="fa fa-tags"></i>
 				<ul class="post-tags-list">
 					<li>
-						<a href="/tags/1" class="a-tag">life,</a>
+						<a href="/tags/1" class="a-tag">&nbsp; life,</a>
 					</li>
 					<li>
 						<a href="/tags/2" class="a-tag">python</a>
 					</li>
 				</ul>
 			</div>
-			<%= link_to _blog.comment_count.to_s + " Comments", "blog/" + _blog.id.to_s, :class => "a-comment-link el el-comment" %>
+			<%= link_to "&nbsp; " + _blog.comment_count.to_s + " Comments", "blog/" + _blog.id.to_s, :class => "a-comment-link fa fa-comment" %>
 		</div>
 	</div>
 </div>
