@@ -11,7 +11,7 @@ body {
 
 body, select, button {
 	font-size: 12px;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei", "微软雅黑";
 	line-height: 24px;
 	vertical-align: baseline;
 }
