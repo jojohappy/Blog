@@ -5,6 +5,7 @@ class BlogComments < ActiveRecord::Base
     validates :username, :presence => true
 
     def md_content
-        GitHub::Markup.render('comments', comment)
+        markdown = Redcarpet::Markdown.new(HTMLwithPygments, :fenced_code_blocks => true, :tables => true)
+        markdown.render(self.comment)
     end
 end

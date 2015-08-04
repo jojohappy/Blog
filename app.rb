@@ -1,4 +1,5 @@
 class MichaelDaiSite < Sinatra::Application
+    register SinatraMore::MarkupPlugin
     # initialize log
     require 'logger'
     Dir.mkdir('log') unless File.exist?('log')
@@ -39,11 +40,14 @@ class MichaelDaiSite < Sinatra::Application
         self.logger = logger
     end
 
+    ActsAsTaggableOn.remove_unused_tags = true
+    ActsAsTaggableOn.strict_case_match = true
+
     # load project config
     APP_CONFIG = YAML.load_file(File.expand_path("../config", __FILE__) + '/app_config.yml')[ENV['RACK_ENV']]
 
     # autoload directory
-    %w{models apps helpers}.each do |dir|
+    %w{models apps helpers libs}.each do |dir|
       Dir.glob(File.expand_path("../#{dir}", __FILE__) + '/**/*.rb').each do |file|
         require file
       end

@@ -4,8 +4,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
-		<link rel="shortcut icon" media="screen" type="image/x-icon" href="/favicon.ico" />
-		<%= stylesheet_link_tag 'css/font-awesome.css', 'css/bootstrap.min.css',  'css/common.css', 'css/index.css' %>
+		<link rel="shortcut icon" media="screen" type="image/x-icon" href="/images/favicon.ico" />
+		<%= stylesheet_link_tag 'font-awesome.css', 'bootstrap.min.css',  'common.css', 'index.css' %>
+		<%= javascript_include_tag 'jquery.min.js', 'bootstrap.min.js', 'index.js' %>
 	</head>
 	<body>
 		<div class="div-content">
@@ -20,14 +21,16 @@
 		                </div>
 		                <div class="div-m-form">
 		                	<div id="divMenu" class="menu-icon fa fa-bars"> </div>
-		                	<span id="spanBlogTitle" class="span-blog-title"><%= APP_CONFIG['site_title'] %></span>
+		                	<span id="spanBlogTitle" class="span-blog-title"><%= APP_CONFIG['site_second_title'] %></span>
 		                	<div id="divSearch" class="search-m-icon fa fa-search"> </div>
 		                </div>
 					</div>
 					<div id="divLeft" class="div-left">
 						<div id="divLeftPortrait" class="div-left-portrait">
 							<div class="div-portrait">
-								<img class="img-portrait" src="/images/my.png"/>
+								<div class="div-img-portrait">
+									<img class="img-portrait" src="/images/my.png"/>
+								</div>
 							</div>
 							<ul class="person-info">
 								<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
@@ -38,10 +41,10 @@
 						<div id="divCategory" class="div-category">
 							<ul>
 								<li><a href="/"><i class="fa fa-home fa-fw"></i><span>&nbsp; Home</span></a></li>
-								<li><a href="gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li>
-								<li><a href=""><i class="fa fa-archive fa-fw"></i><span>&nbsp; Archive</span></a></li>
-								<li><a href=""><i class="fa fa-tags fa-fw"></i><span>&nbsp; Tags</span></a></li>
-								<li><a href=""><i class="fa fa-user fa-fw"></i><span>&nbsp; About</span></a></li>
+								<li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li>
+								<li><a href="/archives"><i class="fa fa-archive fa-fw"></i><span>&nbsp; Archive</span></a></li>
+								<li><a href="/tags"><i class="fa fa-tags fa-fw"></i><span>&nbsp; Tags</span></a></li>
+								<li><a href="/about"><i class="fa fa-user fa-fw"></i><span>&nbsp; About</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -49,27 +52,28 @@
 						<div class="div-wrap-header">
 							<div id="divSearchForm" class="div-search-form form-group">
 								<form action="/search" method="get" accept-charset="utf-8" class="search-form">
-				                    <button type="submit" class="search-icon fa fa-search"> </button>
-				                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
+				                    <div id="divSearchIcon" class="search-icon fa fa-search"> </div>
+				                    <input class="search-form-input-t search-form-input" type="text" name="q" value="" placeholder="Search">
 				                </form>
 			                </div>
 		                </div>
 						<%= yield %>
+						<% if nil != @index_flag %> 
+							<div class="load-more">
+								<button type="button" class="load-more-posts btn btn-default">Load more</button>
+							</div>
+						<% end %>
 					</div>
-					<% if @blogs != nil %> 
-						<div class="load-more">
-							<button type="button" class="load-more-posts btn btn-default">Load more</button>
-						</div>
-					<% end %>
+					
 				</div>
 			</div>
 			<div class="div-footer">
 				<div class="div-social-links">
 					<ul class="social-links">
-					  	<li><a class="github" href=""></a></li>
-					    <li><a class="weibo" href=""></a></li>
-					    <li><a class="googleplus" href=""></a></li>
-					    <li><a class="email" href=""></a></li>
+					  	<li><a class="github" href="https://github.com/jojohappy"></a></li>
+					    <li><a class="weibo" href="http://weibo.com/u/1908395681/home?wvr=5"></a></li>
+					    <li><a class="googleplus" href="https://plus.google.com/+DreamCrystal"></a></li>
+					    <li><a class="email" href="mailto:sarahdj0917@gmail.com"></a></li>
 					</ul>
 				</div>
 				<div class="div-copyright">
@@ -77,6 +81,5 @@
 				</div>
 			</div>
 		</div>
-		<%= javascript_include_tag 'js/jquery.min.js', 'js/bootstrap.min.js', 'js/index.js' %>
 	</body>
 </html>

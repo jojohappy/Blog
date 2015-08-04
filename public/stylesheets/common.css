@@ -11,14 +11,15 @@ body {
 
 body, select, button {
 	font-size: 12px;
-	font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei", "微软雅黑";
+	/*font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei", "微软雅黑";*/
+	font-family: Verdana, "Bitstream Vera Sans","Microsoft YaHei", "微软雅黑";
 	line-height: 24px;
 	vertical-align: baseline;
 }
 
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td {
 	margin:0;
-	padding:0
+	padding:0;
 }
 
 a, a:link {

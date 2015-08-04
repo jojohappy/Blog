@@ -1,0 +1,18 @@
+<% @date_archive = '' %>
+<h3>ARCHIVE</h3>
+<hr>
+<div class="div-archive-wrap">
+	<% @blogs.each_with_index do |blog, index| %>
+        <% if blog.create_datetime.strftime('%^B %Y').to_s != @date_archive %>
+        	<h2 class="archive-date-h2"><%= blog.create_datetime.strftime('%^B %Y') %></h2>
+        	<% @date_archive = blog.create_datetime.strftime('%^B %Y').to_s %>
+        <% end %>
+        <p>
+        	<%= link_to blog.title, "blog/" + blog.id.to_s, :class => "archive-blog-title" %>
+        	&nbsp;&nbsp;&nbsp;
+        	<span class="span-archive-create-time">
+        		<%= blog.create_datetime.strftime('%d %^B %Y') %>
+        	</span>
+        </p>
+    <% end %>
+</div>

@@ -1,5 +1,6 @@
 require 'active_record'
 require 'yaml'
+require 'acts-as-taggable-on'
 
 task :default => :migrate
 

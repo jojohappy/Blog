@@ -1,0 +1,32 @@
+$(document).scrollTop($('.div-comments').offset().top);
+$('.div-comments-wrap').prepend('<%= my_escape_javascript(partial("blog/comment", :locals => {comment: @comment})) %>');
+$('.comment-user-form-input').val("");
+$('textarea#comment_content').val("");
+
+if ($('.md-preview').hasClass('has_preview')) {
+  $('#comment_content_preview').addClass('hidden');
+  $('#comment_content').removeClass('hidden');
+  $('.md-preview').removeClass('has_preview');
+  $('.md-preview').html('Preview');
+  $('#comment_content_preview').html("");
+}
+
+$(".quote-tag").on('click', function(e) {
+  if (e.stopped) return;
+  e.preventDefault(); e.stopped = true;
+  $.ajax({
+   	url: '/comment/quote',
+    data: {'id': $(this).attr('id')},
+    method: 'get',
+    contentType: 'text/plain',
+    success: function(data) {
+      var body = $('textarea#comment_content').val() + data;
+      $('textarea#comment_content').val(body);
+      $('textarea#comment_content').focus();
+    },
+    error: function(status, error) {
+    }
+  });
+});
+
+$('#spanCommentNum').html(parseInt($('#spanCommentNum').html()) + 1);

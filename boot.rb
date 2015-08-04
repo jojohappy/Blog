@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'bundler'
+require 'rubygems' unless defined?(Gem)
 
 ENV['RACK_ENV'] ||= 'development'
 
@@ -8,9 +7,8 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 Bundler.require(:default, ENV['RACK_ENV'])
 
 require 'sinatra'
+require 'sinatra_more'
 require 'sinatra/reloader' if development?
-require 'sinatra/partial'
-require 'sinatra/static_assets'
-require 'github/markup'
+#require 'github/markup'
 
 require './app'

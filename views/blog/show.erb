@@ -1,107 +1,65 @@
-<%= stylesheet_link_tag 'css/github.css' %>
+<%= stylesheet_link_tag 'github.css' %>
 <div class="div-post">
-	<div class="div-title">
-		<span><%= @blog.title %></span>
-	</div>
-	<div class="div-date-sider">
-		<div class="ribbon">
-			<div class="container_div">
-				<div class="base">
-					<span class="span-date">MARCH 01, 2015</span>
-				</div>
-				<div class="left_corner"></div>
-				<div class="right_corner"></div>
-			</div>
-		</div>
-	</div>
-	<div class="div-post-con">
-		<div class="markdown-body div-text">
-			<%= @blog.md_content %>
-		</div>
-		<div class="div-info">
-			<div class="div-tag">
-				<i class="fa fa-tag"></i>
-				<ul class="post-tags-list">
-					<li>
-						<a href="" class="a-tag">&nbsp; life,</a>
-					</li>
-					<li>
-						<a href="" class="a-tag">python</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="div-pages-comments">
-		<div class="div-comments">
-			<div class="div-comment-count">
-				<span>5 comments</span>
-			</div>
-			<div class="div-comments-wrap">
-				<div class="div-comment">
-					<div class="div-comment-person">
-						<img class="img-comment-portrait" src="../images/my.png">
-						<div class="div-person-info">
-							<span><a class="quote-tag fa fa-quote-right"></a></span>
-							<span class="span-comment-person">Michael Dai</span>
-							<span class="span-comment-datetime">2015-04-11</span>
-						</div>
-					</div>
-					<div class="div-comment-content">
-						<span>
-							你说的 85后懒投资的张磊，90后Gitcafe的姚新宇(Thomas Yao) 都是不错的。其实 只要你是踏实做事的。不管几几后。都是值得称赞的。至少他们在努力着。那个余佳文啊 。嘴炮厉害，其他的算了把</span>
-						</div>
-					</div>
-					<div class="div-comment">
-						<div class="div-comment-person">
-							<img class="img-comment-portrait" src="../images/my.png">
-							<div class="div-person-info">
-								<span><a class="quote-tag fa fa-quote-right"></a></span>
-								<span class="span-comment-person">Michael Dai</span>
-								<span class="span-comment-datetime">2015-04-11</span>
-							</div>
-						</div>
-						<div class="div-comment-content">
-							<span>
-								你说的 85后懒投资的张磊，90后Gitcafe的姚新宇(Thomas Yao) 都是不错的。其实 只要你是踏实做事的。不管几几后。都是值得称赞的。至少他们在努力着。那个余佳文啊 。嘴炮厉害，其他的算了把</span>
-							</div>
-						</div>
-						<div class="div-comment">
-							<div class="div-comment-person">
-								<img class="img-comment-portrait" src="../images/my.png">
-								<div class="div-person-info">
-									<span><a class="quote-tag fa fa-quote-right"></a></span>
-									<span class="span-comment-person">Michael Dai</span>
-									<span class="span-comment-datetime">2015-04-11</span>
-								</div>
-							</div>
-							<div class="div-comment-content">
-								<span>
-									你说的 85后懒投资的张磊，90后Gitcafe的姚新宇(Thomas Yao) 都是不错的。其实 只要你是踏实做事的。不管几几后。都是值得称赞的。至少他们在努力着。那个余佳文啊 。嘴炮厉害，其他的算了把</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="div-comment-input">
-						<div class="div-comment-avater">
-							<img class="img-comment-portrait" src="../images/my.png">
-						</div>
-						<form action="/comment" method="get" accept-charset="utf-8" class="comment-form">
-							<input class="comment-input comment-user-form-input form-control" type="text" name="u" value="" placeholder="Name">
-							<input class="comment-input comment-email-form-input form-control" type="text" name="e" value="" placeholder="Email">
-							<textarea class="comment-input form-control" placeholder="Comment" rows="5"></textarea>
-							<div class="div-comment-b">
-					            <span>[评论可以使用Markdown格式]</span>
-					            <div class="div-comment-button">
-					                <button type="button" class="btn btn-default">Perview</button>
-					                <button type="submit" class="btn btn-primary">Submit</button>
-					            </div>
-					        </div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</dev>
-	</dev>
-</dev>
+    <div class="div-title">
+        <span><%= @blog.title %></span>
+    </div>
+    <div class="div-date-sider">
+        <div class="ribbon">
+            <div class="container_div">
+                <div class="base">
+                    <span class="span-date"><%= create_time_to_word @blog.create_datetime.to_s %></span>
+                </div>
+                <div class="left_corner"></div>
+                <div class="right_corner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div-post-con">
+        <div class="markdown-body div-text">
+            <%= @blog.md_content %>
+        </div>
+        <div class="div-info">
+            <div class="div-tag">
+                <i class="fa fa-tag"></i>
+                <ul class="post-tags-list">
+                    <% @blog.tag_list.each_with_index do |tag, index| %>
+                    <li>
+                        <% if index == 0 %>
+                            <%= link_to "&nbsp; " + tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
+                        <% else %>
+                            <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
+                        <% end %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="div-pages-comments">
+        <div class="div-comments">
+            <div class="div-comment-count">
+                <span id="spanCommentNum"><%= @blog.blog_comments.length %></span> comments
+            </div>
+            <div class="div-comments-wrap">
+                <%= partial 'blog/comment', :collection => @blog.blog_comments.reverse %>
+                <div class="div-comment-input">
+                    <div class="div-comment-avater">
+                        <img class="img-comment-portrait" src="../images/comment_avater.png">
+                    </div>
+                    <% form_for BlogComments.new, url('blog/' + @blog.id.to_s + '/comments'), :class => "comment-form form-remote" do |f| %>
+                        <%= f.text_field :username, :class => "form-control comment-input comment-user-form-input", :placeholder => "Name" %>
+                        <%= f.text_area :comment, :class => "form-control comment-input", :id => "comment_content", :placeholder => "Comment", :rows => "8" %>
+                        <div id="comment_content_preview" class="markdown-body form-control comment-input hidden comment-preview"></div>
+                        <div class="div-comment-b">
+                            <span>[评论可以使用Markdown格式]</span>
+                            <div class="div-comment-button">
+                                <button type="button" class="md-preview btn-comment btn btn-default">Preview</button>
+                                <%= f.submit "Submit", :class => "btn-comment btn btn-primary" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

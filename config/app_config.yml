@@ -1,6 +1,7 @@
 development: &default
   sinatra: 'sinatra blog'
   site_title: "Michael Dai's Blog ~ Remember My Life"
+  site_second_title: "Michael Dai ~ Remember My Life"
   author: "Michael Dai"
   my_career: "Devops"
   location: "Shanghai, China"
