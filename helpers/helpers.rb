@@ -20,4 +20,14 @@ helpers do
       end
       return tag_body
     end
+
+    def md_content_helper(md_file_url)
+      markdown = Redcarpet::Markdown.new(HTMLwithPygments, :fenced_code_blocks => true, :tables => true)
+      markdown.render(File.read(File.expand_path("./md") + '/' + md_file_url))
+    end
+
+    def md_content_comment_helper(comment)
+      markdown = Redcarpet::Markdown.new(HTMLwithPygments, :fenced_code_blocks => true, :tables => true)
+      markdown.render(comment)
+    end
 end
