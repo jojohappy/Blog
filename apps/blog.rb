@@ -20,6 +20,5 @@ end
 
 get '/comment/preview' do
     data = params[:data]
-    markdown = Redcarpet::Markdown.new(HTMLwithPygments, :fenced_code_blocks => true, :tables => true)
-    markdown.render(data)
+    Common.render_markdown(data)
 end

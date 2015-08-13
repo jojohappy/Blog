@@ -1,0 +1,11 @@
+<%= javascript_include_tag 'module.min.js', 'hotkeys.min.js', 'uploader.min.js', 'simditor.js' %>
+<%= stylesheet_link_tag 'github.css' %>
+<%= stylesheet_link_tag 'simditor.css' %>
+<div class="div-blog-edit-content">
+    <div class="div-blog-edit-content-main">
+        <% form_for @blog, url('admin/blog') do |f| %>
+            <%= partial 'admin/_form', :locals => {_form: f} %>
+        <% end %>
+    </div>
+</div>
+<%= partial 'admin/_form_js' %>

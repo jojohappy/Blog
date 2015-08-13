@@ -105,6 +105,39 @@ $(document).ready(function() {
       value = value + ', ' + $(this).attr('name');
     $('.tag-edit-text').val(value);
   });
+
+  $('.a-delete-blog').click(function() {
+    var r = confirm("Delete this Blog?");
+    if (r === true) {
+      blogid = $(this).attr('id');
+      $.ajax({
+        url: '/admin/blog/' + blogid,
+        method: 'delete',
+        contentType: 'text/plain',
+        dataType: 'text',
+        success: function(data) {
+          window.location.href = '/';
+        },
+        error: function(status, error) {
+        }
+      });
+    }
+  });
+
+  $('.a-logout').click(function() {
+    var r = confirm("Do you want to logout?");
+    if (r === true) {
+      $.ajax({
+        url: '/logout',
+        method: 'delete',
+        success: function(data) {
+          window.location.href = '/';
+        },
+        error: function(status, error) {
+        }
+      });
+    }
+  });
 });
 
 $(window).resize(function() {

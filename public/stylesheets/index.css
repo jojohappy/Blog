@@ -227,6 +227,12 @@
 	color: inherit;
 }
 
+.a-admin-link {
+	float: right;
+	margin-right: 10px;
+	color: inherit;
+}
+
 .div-footer a {
 	color: #30b2d0;
 }
@@ -552,7 +558,7 @@ blockquote {
     font-size: 13px;
     line-height: 30px;
     text-align: center;
-    margin-right: 10px;
+    
     background: #249030;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -562,6 +568,9 @@ blockquote {
     transition: 0.2s ease;
     border: none;
     padding: 0 9px;
+    margin: 5px;
+    cursor: pointer;
+
 }
 
 .div-tags-list a:hover {
@@ -593,6 +602,7 @@ blockquote {
 .div-tag-cloud a:hover {
 	background-color: #1B6D25;
 	color: #fff;
+	text-decoration: none;
 }
 
 .btn-edit {
@@ -633,8 +643,9 @@ blockquote {
 	display: none;
 	width: 100%;
 	background-color: #fff;
-	padding: 10px 10px 10px 35px;
+	padding: 10px 10px 10px 25px;
 	font-size: 14px;
+	min-height: 350px;
 }
 
 hr {
@@ -642,6 +653,28 @@ hr {
     margin-bottom: 20px;
     border: 0;
     border-top: 1px solid #eee;
+}
+
+.div-login {
+    height: 70px;
+    padding: 15px 0 0 18%;
+    font-weight: bold;
+    margin-right: -1px;
+    background-color: #f5f8f9;
+}
+
+.img-login-user {
+	width: 25px;
+	height: 25px;
+	margin-right: 1px;
+}
+
+.div-login span {
+	margin-top: 3px;
+}
+
+.div-donate {
+	margin-left: 30px;
 }
 
 @media screen and (max-width: 500px) {
@@ -754,6 +787,10 @@ hr {
 	display: none;
 }
 
+.div-login {
+	display: none;
+}
+
 }
 
 @media screen and (min-width: 501px) {
@@ -780,7 +817,6 @@ hr {
   	border-right: 1px solid #dfdfdf;
   	width: 20%;
   	margin-left: 4px;
-  	margin-top: 70px;
 }
 
 .div-wrap {

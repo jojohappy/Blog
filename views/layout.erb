@@ -26,6 +26,17 @@
 		                </div>
 					</div>
 					<div id="divLeft" class="div-left">
+						<div class="div-login">
+							<% unless account_login? %>
+					          	<a href="/login">+ login</a>
+					        <% else %>
+					          	<div class="div-logined">
+									<img class="img-login-user" src="/images/admin.png"/>
+									<span><%= current_account.name %></span>
+									<a href="/admin/blog/new_blog">New Blog</a>
+							  	</div>
+					        <% end %>
+						</div>
 						<div id="divLeftPortrait" class="div-left-portrait">
 							<div class="div-portrait">
 								<div class="div-img-portrait">
@@ -41,10 +52,13 @@
 						<div id="divCategory" class="div-category">
 							<ul>
 								<li><a href="/"><i class="fa fa-home fa-fw"></i><span>&nbsp; Home</span></a></li>
-								<li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li>
+								<!-- <li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li> -->
 								<li><a href="/archives"><i class="fa fa-archive fa-fw"></i><span>&nbsp; Archive</span></a></li>
 								<li><a href="/tags"><i class="fa fa-tags fa-fw"></i><span>&nbsp; Tags</span></a></li>
 								<li><a href="/about"><i class="fa fa-user fa-fw"></i><span>&nbsp; About</span></a></li>
+								<% if account_login? %>
+									<li><a href="javascript::void(0)" class="a-logout"><i class="fa fa-sign-out fa-fw"></i><span>&nbsp; Logout</span></a></li>
+								<% end %>
 							</ul>
 						</div>
 					</div>
@@ -59,7 +73,7 @@
 		                </div>
 						<%= yield %>
 						<% if nil != @index_flag %> 
-							<div class="load-more">
+							<div class="load-more" style="display:none;">
 								<button type="button" class="load-more-posts btn btn-default">Load more</button>
 							</div>
 						<% end %>

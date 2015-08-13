@@ -1,0 +1,43 @@
+<script>
+  var editor = new Simditor({
+    textarea: $('#BlogEditArea'),
+    placeholder: 'Content',
+    upload: {
+      url: '/admin/blog/upload_image',
+      params: null,
+      filekey: 'upload_file',
+      connectCount: 3
+    },
+    pasteImage: true,
+    toolbar: ["bold", "italic", "underline", "strikethrough", "|", "ol", "ul", "blockquote", "indent", "outdent", "|", "link", "image"],
+    defaultImage: '/images/my.png'
+  });
+  $('.simditor').css('border', '0px');
+  $('#blogEditBody').click(function() {
+    $('#blogEditLi').addClass('active');
+    $('#blogPreviewLi').removeClass('active');
+    $('.div-blog-edit-preview').hide();
+    $('.simditor').show();
+  });
+
+  $('#blogEditPreview').click(function() {
+    evalue = editor.getValue();
+    $('#BlogEditArea').html(evalue);
+    blogContent = $('#BlogEditArea').text();
+    $.ajax({
+      url: '/admin/blog/preview',
+      data: {'data': blogContent},
+      method: 'get',
+      contentType: 'text/plain',
+      success: function(data) {
+        $('.div-blog-edit-preview').html(data);
+        $('#blogEditLi').removeClass('active');
+        $('#blogPreviewLi').addClass('active');
+        $('.div-blog-edit-preview').show();
+        $('.simditor').hide();
+      },
+      error: function(status, error) {
+      }
+    });
+  });
+</script>

@@ -630,7 +630,7 @@
 }
 .simditor .simditor-body p, .simditor .simditor-body div, .editor-style p, .editor-style div {
   word-wrap: break-word;
-  margin: 0 0 10px 0;
+  margin: 0 0 3px 0;
   color: #333;
   word-wrap: break-word;
 }

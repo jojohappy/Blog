@@ -9,6 +9,7 @@ Bundler.require(:default, ENV['RACK_ENV'])
 require 'sinatra'
 require 'sinatra_more'
 require 'sinatra/reloader' if development?
+require 'json'
 #require 'github/markup'
 
 require './app'

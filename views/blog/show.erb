@@ -33,7 +33,15 @@
                     <% end %>
                 </ul>
             </div>
+            <% if account_login? %>
+                <%= link_to "Delete", "javascript::void(0)", :id => @blog.id.to_s, :class => "a-admin-link a-delete-blog" %>
+                <%= link_to "Edit", "/admin/blog/" + @blog.id.to_s + "/edit", :class => "a-admin-link" %>
+            <% end %>
         </div>
+    </div>
+    <div class="markdown-body div-donate">
+        <p>希望得到您的捐助，让我有120%的动力更新Blog，谢谢~</p>
+        <img src="/images/apw3d6rhnbs2c0uad8.png">
     </div>
     <div class="div-pages-comments">
         <div class="div-comments">

@@ -1,8 +1,3 @@
-/*!
-* Simditor v2.2.2
-* http://simditor.tower.im/
-* 2015-07-31
-*/
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module unless amdModuleId is set
@@ -512,40 +507,6 @@ Formatter = (function(superClass) {
     var $link, $node, findLinkNode, k, lastIndex, len, linkNodes, match, re, replaceEls, subStr, text, uri;
     if ($el == null) {
       $el = this.editor.body;
-    }
-    linkNodes = [];
-    findLinkNode = function($parentNode) {
-      return $parentNode.contents().each(function(i, node) {
-        var $node, text;
-        $node = $(node);
-        if ($node.is('a') || $node.closest('a, pre', $el).length) {
-          return;
-        }
-        if (!$node.is('iframe') && $node.contents().length) {
-          return findLinkNode($node);
-        } else if ((text = $node.text()) && /https?:\/\/|www\./ig.test(text)) {
-          return linkNodes.push($node);
-        }
-      });
-    };
-    findLinkNode($el);
-    re = /(https?:\/\/|www\.)[\w\-\.\?&=\/#%:,@\!\+]+/ig;
-    for (k = 0, len = linkNodes.length; k < len; k++) {
-      $node = linkNodes[k];
-      text = $node.text();
-      replaceEls = [];
-      match = null;
-      lastIndex = 0;
-      while ((match = re.exec(text)) !== null) {
-        subStr = text.substring(lastIndex, match.index);
-        replaceEls.push(document.createTextNode(subStr));
-        lastIndex = re.lastIndex;
-        uri = /^(http(s)?:\/\/|\/)/.test(match[0]) ? match[0] : 'http://' + match[0];
-        $link = $("<a href=\"" + uri + "\" rel=\"nofollow\"></a>").text(match[0]);
-        replaceEls.push($link[0]);
-      }
-      replaceEls.push(document.createTextNode(text.substring(lastIndex)));
-      $node.replaceWith($(replaceEls));
     }
     return $el;
   };
@@ -1578,6 +1539,9 @@ UndoManager = (function(superClass) {
       return;
     }
     html = this.editor.body.html();
+    if (html !== currentState.html) {
+      return;
+    }
     currentState.html = html;
     return currentState.caret = this.caretPosition();
   };
@@ -1670,11 +1634,7 @@ UndoManager = (function(superClass) {
       } : {};
       return caret;
     } else {
-      if (!this.editor.inputManager.focused) {
-        this.editor.body.focus();
-      }
       if (!caret.start) {
-        this.editor.body.blur();
         return;
       }
       startContainer = this._getNodeByPosition(caret.start);
@@ -1986,7 +1946,7 @@ Toolbar = (function(superClass) {
   };
 
   Toolbar.prototype._init = function() {
-    var toolbarHeight;
+    var floatInitialized, initToolbarFloat, toolbarHeight;
     this.editor = this._module;
     if (!this.opts.toolbar) {
       return;
@@ -2011,21 +1971,30 @@ Toolbar = (function(superClass) {
     if (!this.opts.toolbarHidden && this.opts.toolbarFloat) {
       this.wrapper.css('top', this.opts.toolbarFloatOffset);
       toolbarHeight = 0;
-      $(window).on('resize.simditor-' + this.editor.id, (function(_this) {
-        return function(e) {
+      initToolbarFloat = (function(_this) {
+        return function() {
           _this.wrapper.css('position', 'static');
           _this.wrapper.width('auto');
           _this.editor.util.reflow(_this.wrapper);
           _this.wrapper.width(_this.wrapper.outerWidth());
-          _this.wrapper.css('left', _this.wrapper.offset().left);
+          _this.wrapper.css('left', _this.editor.util.os.mobile ? _this.wrapper.position().left : _this.wrapper.offset().left);
           _this.wrapper.css('position', '');
           toolbarHeight = _this.wrapper.outerHeight();
-          return _this.editor.placeholderEl.css('top', toolbarHeight);
+          _this.editor.placeholderEl.css('top', toolbarHeight);
+          return true;
         };
-      })(this)).resize();
+      })(this);
+      $(window).on('resize.simditor-' + this.editor.id, function(e) {
+        var floatInitialized;
+        return floatInitialized = null;
+      });
+      floatInitialized = null;
       $(window).on('scroll.simditor-' + this.editor.id, (function(_this) {
         return function(e) {
           var bottomEdge, scrollTop, topEdge;
+          if (!_this.wrapper.is(':visible')) {
+            return;
+          }
           topEdge = _this.editor.wrapper.offset().top;
           bottomEdge = topEdge + _this.editor.wrapper.outerHeight() - 80;
           scrollTop = $(document).scrollTop() + _this.opts.toolbarFloatOffset;
@@ -2035,6 +2004,7 @@ Toolbar = (function(superClass) {
               return _this.wrapper.css('top', _this.opts.toolbarFloatOffset);
             }
           } else {
+            floatInitialized || (floatInitialized = initToolbarFloat());
             _this.editor.wrapper.addClass('toolbar-floating').css('padding-top', toolbarHeight);
             if (_this.editor.util.os.mobile) {
               return _this.wrapper.css('top', scrollTop - topEdge + _this.opts.toolbarFloatOffset);
@@ -2462,7 +2432,6 @@ Simditor = (function(superClass) {
   };
 
   Simditor.prototype.focus = function() {
-    var $blockEl, range;
     if (!(this.body.is(':visible') && this.body.is('[contenteditable]'))) {
       this.el.find('textarea:visible').focus();
       return;
@@ -2470,12 +2439,6 @@ Simditor = (function(superClass) {
     if (this.inputManager.lastCaretPosition) {
       return this.undoManager.caretPosition(this.inputManager.lastCaretPosition);
     } else {
-      $blockEl = this.body.find('p').last();
-      if (!($blockEl.length > 0)) {
-        $blockEl = $('<p/>').append(this.util.phBr).appendTo(this.body);
-      }
-      range = document.createRange();
-      this.selection.setRangeAtEndOf($blockEl, range);
       return this.body.focus();
     }
   };
@@ -2519,6 +2482,7 @@ Simditor.i18n = {
     'bold': '加粗文字',
     'code': '插入代码',
     'color': '文字颜色',
+    'coloredText': '彩色文字',
     'hr': '分隔线',
     'image': '插入图片',
     'externalImage': '外链图片',
@@ -2563,6 +2527,7 @@ Simditor.i18n = {
     'bold': 'Bold',
     'code': 'Code',
     'color': 'Text Color',
+    'coloredText': 'Colored Text',
     'hr': 'Horizontal Line',
     'image': 'Insert Image',
     'externalImage': 'External Image',
@@ -3223,7 +3188,7 @@ ColorButton = (function(superClass) {
     });
     return this.menuWrapper.on('click', '.font-color', (function(_this) {
       return function(e) {
-        var $link, $p, hex, rgb;
+        var $link, $p, hex, range, rgb, textNode;
         _this.wrapper.removeClass('menu-on');
         $link = $(e.currentTarget);
         if ($link.hasClass('font-color-default')) {
@@ -3239,6 +3204,13 @@ ColorButton = (function(superClass) {
         }
         if (!hex) {
           return;
+        }
+        range = _this.editor.selection.range();
+        if (!$link.hasClass('font-color-default') && range.collapsed) {
+          textNode = document.createTextNode(_this._t('coloredText'));
+          range.insertNode(textNode);
+          range.selectNodeContents(textNode);
+          _this.editor.selection.range(range);
         }
         document.execCommand('styleWithCSS', false, true);
         document.execCommand('foreColor', false, hex);
@@ -4271,12 +4243,13 @@ ImagePopover = (function(superClass) {
     this.altEl = this.el.find('#image-alt');
     this.srcEl.on('keydown', (function(_this) {
       return function(e) {
+        var range;
         if (!(e.which === 13 && !_this.target.hasClass('uploading'))) {
           return;
         }
         e.preventDefault();
-        _this.button.editor.body.focus();
-        _this.button.editor.selection.setRangeAfter(_this.target);
+        range = document.createRange();
+        _this.button.editor.selection.setRangeAfter(_this.target, range);
         return _this.hide();
       };
     })(this));
@@ -4302,7 +4275,7 @@ ImagePopover = (function(superClass) {
     })(this));
     this.el.find('.image-size').on('keydown', (function(_this) {
       return function(e) {
-        var inputEl;
+        var $img, inputEl, range;
         inputEl = $(e.currentTarget);
         if (e.which === 13 || e.which === 27) {
           e.preventDefault();
@@ -4311,9 +4284,10 @@ ImagePopover = (function(superClass) {
           } else {
             _this._restoreImg();
           }
-          _this.button.editor.body.focus();
-          _this.button.editor.selection.setRangeAfter(_this.target);
-          return _this.hide();
+          $img = _this.target;
+          _this.hide();
+          range = document.createRange();
+          return _this.button.editor.selection.setRangeAfter($img, range);
         } else if (e.which === 9) {
           return _this.el.data('popover').refresh();
         }
@@ -4321,10 +4295,11 @@ ImagePopover = (function(superClass) {
     })(this));
     this.altEl.on('keydown', (function(_this) {
       return function(e) {
+        var range;
         if (e.which === 13) {
           e.preventDefault();
-          _this.button.editor.body.focus();
-          _this.button.editor.selection.setRangeAfter(_this.target);
+          range = document.createRange();
+          _this.button.editor.selection.setRangeAfter(_this.target, range);
           return _this.hide();
         }
       };
@@ -4394,7 +4369,7 @@ ImagePopover = (function(superClass) {
       onlySetVal = false;
     }
     value = inputEl.val() * 1;
-    if (!($.isNumeric(value) || value < 0)) {
+    if (!(this.target && ($.isNumeric(value) || value < 0))) {
       return;
     }
     if (inputEl.is(this.widthEl)) {
@@ -4411,8 +4386,8 @@ ImagePopover = (function(superClass) {
         width: width,
         height: height
       });
+      return this.editor.trigger('valuechanged');
     }
-    return this.editor.trigger('valuechanged');
   };
 
   ImagePopover.prototype._restoreImg = function() {

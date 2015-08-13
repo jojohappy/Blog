@@ -12,19 +12,39 @@ class Blogs < ActiveRecord::Base
     delegate :content, :to => :blog_contents, :allow_nil => true
 
     def md_content
-        markdown = Redcarpet::Markdown.new(HTMLwithPygments, :fenced_code_blocks => true, :tables => true)
-        markdown.render(File.read(File.expand_path("./md") + '/' + md_file_url))
+        Common.render_markdown(File.read(File.expand_path("./md") + '/' + md_file_url))
     end
 
     def content=(value)
         self.blog_contents ||= BlogContents.new
-        self.blog_contents.content = value
+        value = CGI::unescapeHTML(value)
+        value = value.gsub(/<p>/, '').gsub(/<\/p>/, '<br>').gsub(/<br>/, "\n")
+        md_value = Common.render_markdown(value)
+        self.blog_contents.content = md_value.truncate(300)
+        if nil == self.md_file_url or '' == self.md_file_url
+            self.md_file_url = SecureRandom.uuid + '.md'
+        end
+        File.open(File.expand_path("./md") + '/' + self.md_file_url, 'w') { |file| file.write(value)}
     end
 
     def md_file_content
         body = ''
-        file = File.read(File.expand_path("./md") + '/' + md_file_url).to_s
-        file.gsub(/\n{3,}/, "\n\n").split("\n").each {|line| body << "#{line}<br>"}
+        begin
+            file = File.read(File.expand_path("./md") + '/' + md_file_url).to_s
+            file.gsub(/\n{3,}/, "\n\n").split("\n").each {|line| body << "#{line}<br>"}
+        rescue TypeError
+            body
+        end
         body
+    end
+
+    def update_blog(param_hash)
+        self.transaction do
+            update_attributes!(param_hash)
+            blog_contents.save!
+            save!
+        end
+    rescue
+        return false
     end
 end

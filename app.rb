@@ -15,6 +15,8 @@ class MichaelDaiSite < Sinatra::Application
         logger = ::Logger.new("/dev/null")
     end
 
+    use Rack::Session::Pool, :expire_after => 604800
+
     # configure
     configure do
         set :default_encoding, 'utf-8'
@@ -24,6 +26,8 @@ class MichaelDaiSite < Sinatra::Application
         set :partial_template_engine, :erb
         use Rack::CommonLogger, logger
         set :show_exceptions, true
+        set :session_secret, 'super secret'
+        set :sessions, :domain => 'hairtaildai.com'
     end
 
     configure :production do

@@ -1,0 +1,20 @@
+<h4>Title</h4>
+<%= _form.text_field :title, :class => "form-control text-edit", :placeholder => "Title", :value => @blog.title %>
+<div class="div-blog-body">
+    <ul class="nav nav-tabs nav-nb">
+      <li id="blogEditLi" role="presentation" class="active"><a id="blogEditBody"><i class="fa fa-code fa-fw"></i>&nbsp;Edit</a></li>
+      <li id="blogPreviewLi" role="presentation"><a id="blogEditPreview"><i class="fa fa-eye fa-fw"></i>&nbsp;Preview</a></a></li>
+    </ul>
+    <textarea class="div-blog-edit form-control" id="BlogEditArea" name="blogs[content]">
+        <%= @blog.md_file_content %>
+    </textarea>
+    <div class="div-blog-edit-preview markdown-body"></div>
+</div>
+</br>
+<h4>Tags</h4>
+<%= _form.text_field :tag_list, :class => "form-control text-edit tag-edit-text", :placeholder => "用逗号分开，Tag必须是字母数字空格下划线和中文", :value => @blog.tag_list %>
+<div class="div-tag-cloud">
+    <%= tag_cloud %>
+</div>
+<a href="/blog/<%= @blog.id.to_s %>" class="btn-edit btn btn-danger">Cancel</a>
+<%= _form.submit "Submit", :class => "btn-edit btn btn-primary" %>
