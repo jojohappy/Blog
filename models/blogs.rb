@@ -11,6 +11,8 @@ class Blogs < ActiveRecord::Base
 
     delegate :content, :to => :blog_contents, :allow_nil => true
 
+    after_destroy :rm_md_file
+
     def md_content
         Common.render_markdown(File.read(File.expand_path("./md") + '/' + md_file_url))
     end
@@ -46,5 +48,9 @@ class Blogs < ActiveRecord::Base
         end
     rescue
         return false
+    end
+
+    def rm_md_file
+        File.delete(File.expand_path("./md") + '/' + md_file_url)
     end
 end
