@@ -4,6 +4,7 @@ Michael Dai's Blog. Coding by ruby on sinatra
 
 # Blog中用到的开源组件
 
+* [sinatra](http://www.sinatrarb.com/intro.html)，轻量级Ruby Web开发框架
 * [simditor](http://simditor.tower.im/)，一个开源的编辑器，用于发布和修改Blog
 * [redcarpet](https://github.com/vmg/redcarpet)，Markdown渲染工具
 * [pygments](http://pygments.org/)，代码高亮工具
