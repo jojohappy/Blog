@@ -1,4 +1,11 @@
 $(document).scrollTop($('.div-comments').offset().top);
+<% if nil == @comment.username or '' == @comment.username %>
+$("#comment_user").tooltip({'placement': "bottom", 'trigger':'focus', 'title': '请输入用户名'});
+$("#comment_user").focus();
+<% elsif nil == @comment.comment or '' == @comment.comment %>
+$("#comment_content").tooltip({'placement': "bottom", 'trigger':'focus', 'title': '请输入评论'});
+$("#comment_content").focus();
+<% else %>
 $('.div-comments-wrap').prepend('<%= my_escape_javascript(partial("blog/comment", :locals => {comment: @comment})) %>');
 $('.comment-user-form-input').val("");
 $('textarea#comment_content').val("");
@@ -30,3 +37,4 @@ $(".quote-tag").on('click', function(e) {
 });
 
 $('#spanCommentNum').html(parseInt($('#spanCommentNum').html()) + 1);
+<% end %>

@@ -55,7 +55,7 @@
                         <img class="img-comment-portrait" src="../images/comment_avater.png">
                     </div>
                     <% form_for BlogComments.new, url('blog/' + @blog.id.to_s + '/comments'), :class => "comment-form form-remote" do |f| %>
-                        <%= f.text_field :username, :class => "form-control comment-input comment-user-form-input", :placeholder => "Name" %>
+                        <%= f.text_field :username, :class => "form-control comment-input comment-user-form-input", :id => "comment_user", :placeholder => "Name" %>
                         <%= f.text_area :comment, :class => "form-control comment-input", :id => "comment_content", :placeholder => "Comment", :rows => "8" %>
                         <div id="comment_content_preview" class="markdown-body form-control comment-input hidden comment-preview"></div>
                         <div class="div-comment-b">
