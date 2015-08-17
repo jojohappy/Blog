@@ -21,8 +21,8 @@ class Blogs < ActiveRecord::Base
         self.blog_contents ||= BlogContents.new
         value = CGI::unescapeHTML(value)
         value = value.gsub(/<p>/, '').gsub(/<\/p>/, '<br>').gsub(/<br>/, "\n").gsub(/&nbsp;/, ' ')
-        md_value = Common.render_markdown(value)
-        self.blog_contents.content = md_value.truncate(300)
+        content_value = value.truncate(300)
+        self.blog_contents.content = Common.render_markdown(content_value)
         if nil == self.md_file_url or '' == self.md_file_url
             self.md_file_url = SecureRandom.uuid + '.md'
         end
