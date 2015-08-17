@@ -20,7 +20,7 @@ class Blogs < ActiveRecord::Base
     def content=(value)
         self.blog_contents ||= BlogContents.new
         value = CGI::unescapeHTML(value)
-        value = value.gsub(/<p>/, '').gsub(/<\/p>/, '<br>').gsub(/<br>/, "\n")
+        value = value.gsub(/<p>/, '').gsub(/<\/p>/, '<br>').gsub(/<br>/, "\n").gsub(/&nbsp;/, ' ')
         md_value = Common.render_markdown(value)
         self.blog_contents.content = md_value.truncate(300)
         if nil == self.md_file_url or '' == self.md_file_url
