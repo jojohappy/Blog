@@ -26,9 +26,8 @@
     blogContent = $('#BlogEditArea').text();
     $.ajax({
       url: '/admin/blog/preview',
-      data: {'data': blogContent},
-      method: 'get',
-      contentType: 'text/plain',
+      data: {data: blogContent},
+      method: 'post',
       success: function(data) {
         $('.div-blog-edit-preview').html(data);
         $('#blogEditLi').removeClass('active');

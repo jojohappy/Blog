@@ -28,6 +28,13 @@ post '/admin/blog/upload_image' do
 	{:success => 'true', :file_path => '/images/upload/' + local_file_name}.to_json
 end
 
+post '/admin/blog/preview' do
+    data = params[:data].to_s.strip
+    data = data.gsub(/<p>/, '').gsub(/<\/p>/, '<br>')
+    data = data.gsub(/<br>/, "\n")
+    Common.render_markdown(data)
+end
+
 post '/admin/blog/:id' do
 	@blog = Blogs.find params[:id].to_i
 	@title = @blog.title
@@ -49,9 +56,3 @@ get '/admin/blog/:id/edit' do
     erb :'admin/edit'
 end
 
-get '/admin/blog/preview' do
-    data = params[:data].to_s.strip
-    data = data.gsub(/<p>/, '').gsub(/<\/p>/, '<br>')
-    data = data.gsub(/<br>/, "\n")
-    Common.render_markdown(data)
-end
