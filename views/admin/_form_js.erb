@@ -23,7 +23,7 @@
   $('#blogEditPreview').click(function() {
     evalue = editor.getValue();
     $('#BlogEditArea').html(evalue);
-    blogContent = $('#BlogEditArea').text();
+    blogContent = $('#BlogEditArea').val();
     $.ajax({
       url: '/admin/blog/preview',
       data: {data: blogContent},

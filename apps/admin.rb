@@ -29,7 +29,7 @@ post '/admin/blog/upload_image' do
 end
 
 post '/admin/blog/preview' do
-    data = params[:data].to_s.strip
+    data = CGI::unescapeHTML(params[:data].to_s.strip)
     data = data.gsub(/<p>/, '').gsub(/<\/p>/, '<br>')
     data = data.gsub(/<br>/, "\n")
     Common.render_markdown(data)

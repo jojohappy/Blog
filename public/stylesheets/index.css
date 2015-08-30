@@ -647,7 +647,7 @@ blockquote {
 	display: none;
 	width: 100%;
 	background-color: #fff;
-	padding: 10px 10px 10px 25px;
+	padding: 10px 25px 10px 25px;
 	font-size: 14px;
 	min-height: 350px;
 }

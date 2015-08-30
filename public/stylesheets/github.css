@@ -52,8 +52,9 @@
   color: black; }
 
 .markdown-body h2 {
+  padding-bottom: 0.3em;
   font-size: 24px;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #eee;
   color: black; }
 
 .markdown-body h3 {
@@ -232,12 +233,14 @@
     text-align: right; }
 
 .markdown-body code, .markdown-body tt {
-  margin: 0 2px;
-  padding: 0 5px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px; }
+    margin: 0 2px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    /* border: 1px solid #eaeaea; */
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 3px;
+    color: #333;
+}
 
 .markdown-body pre code {
   margin: 0;
