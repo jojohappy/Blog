@@ -1,21 +1,23 @@
-<h3>TAGS</h3>
-<hr>
-<div class="div-tags-wrap">
-	<div class="div-tags-list">
-		<%= partial 'tag/_tag', :collection => @blog_tags %>
-	</div>
-	<div class="div-tags-content">
-	<% @blog_tags.each do |key, blog_tag| %>
-        <h2 id="tag-<%= key %>" class="archive-date-h2"><%= key %></h2>
-        <% blog_tag.each_with_index do |blog, index| %>
-	        <p>
-	        	<%= link_to blog.title, "blog/" + blog.id.to_s, :class => "archive-blog-title" %>
-	        	&nbsp;&nbsp;&nbsp;
-	        	<span class="span-archive-create-time">
-	        		<%= blog.create_datetime.strftime('%d %^B %Y') %>
-	        	</span>
-	        </p>
+<div class="div-card">
+    <h3>TAGS</h3>
+    <hr>
+    <div class="div-tags-wrap">
+        <div class="div-tags-list">
+            <%= partial 'tag/_tag', :collection => @blog_tags %>
+        </div>
+        <div class="div-tags-content">
+        <% @blog_tags.each do |key, blog_tag| %>
+            <h2 id="tag-<%= key %>" class="archive-date-h2"><%= key %></h2>
+            <% blog_tag.each_with_index do |blog, index| %>
+                <p>
+                    <%= link_to blog.title, "blog/" + blog.id.to_s, :class => "archive-blog-title" %>
+                    &nbsp;&nbsp;&nbsp;
+                    <span class="span-archive-create-time">
+                        <%= blog.create_datetime.strftime('%d %^B %Y') %>
+                    </span>
+                </p>
+            <% end %>
         <% end %>
-    <% end %>
+        </div>
     </div>
 </div>

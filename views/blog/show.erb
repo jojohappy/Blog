@@ -24,11 +24,7 @@
                 <ul class="post-tags-list">
                     <% @blog.tag_list.each_with_index do |tag, index| %>
                     <li>
-                        <% if index == 0 %>
-                            <%= link_to "&nbsp; " + tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
-                        <% else %>
-                            <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
-                        <% end %>
+                        <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
                     </li>
                     <% end %>
                 </ul>
@@ -43,31 +39,18 @@
         <p>希望得到您的捐助，让我有120%的动力更新Blog，谢谢~</p>
         <img src="/images/apw3d6rhnbs2c0uad8.png">
     </div>
-    <div class="div-pages-comments">
-        <div class="div-comments">
-            <div class="div-comment-count">
-                <span id="spanCommentNum"><%= @blog.blog_comments.length %></span> comments
-            </div>
-            <div class="div-comments-wrap">
-                <%= partial 'blog/comment', :collection => @blog.blog_comments.reverse %>
-                <div class="div-comment-input">
-                    <div class="div-comment-avater">
-                        <img class="img-comment-portrait" src="../images/comment_avater.png">
-                    </div>
-                    <% form_for BlogComments.new, url('blog/' + @blog.id.to_s + '/comments'), :class => "comment-form form-remote" do |f| %>
-                        <%= f.text_field :username, :class => "form-control comment-input comment-user-form-input", :id => "comment_user", :placeholder => "Name" %>
-                        <%= f.text_area :comment, :class => "form-control comment-input", :id => "comment_content", :placeholder => "Comment", :rows => "8" %>
-                        <div id="comment_content_preview" class="markdown-body form-control comment-input hidden comment-preview"></div>
-                        <div class="div-comment-b">
-                            <span>[评论可以使用Markdown格式]</span>
-                            <div class="div-comment-button">
-                                <button type="button" class="md-preview btn-comment btn btn-default">Preview</button>
-                                <%= f.submit "Submit", :class => "btn-comment btn btn-primary" %>
-                            </div>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <div id="disqus_thread" class="div-pages-comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'hairtaildai';
+        
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>

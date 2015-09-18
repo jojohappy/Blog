@@ -3,7 +3,6 @@ class Blogs < ActiveRecord::Base
     acts_as_taggable
 
     belongs_to :blog_contents, :dependent => :destroy
-    has_many :blog_comments, :class_name => 'BlogComments', :dependent => :destroy
 
     validates :title, :presence => true
     validates :title, :length => {:in => 1..100}

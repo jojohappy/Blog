@@ -28,24 +28,6 @@ $(document).ready(function() {
 
   });
 
-  $(".quote-tag").click(function(e) {
-    if (e.stopped) return;
-    e.preventDefault(); e.stopped = true;
-    $.ajax({
-      url: '/comment/quote',
-      data: {'id': $(this).attr('id')},
-      method: 'get',
-      contentType: 'text/plain',
-      success: function(data) {
-        var body = $('textarea#comment_content').val() + data;
-        $('textarea#comment_content').val(body);
-        $('textarea#comment_content').focus();
-      },
-      error: function(status, error) {
-      }
-     });
-  });
-
   $('.form-remote').submit(function(ev){
     ev.preventDefault();
     $.ajax({
@@ -55,33 +37,6 @@ $(document).ready(function() {
     });
   });
 
-  $('.md-preview').click(function(e) {
-    $.ajax({
-      url: '/comment/preview',
-      data: {'data': $('#comment_content').val()},
-      method: 'get',
-      contentType: 'text/plain',
-      success: function(data) {
-        $('#comment_content_preview').html(data);
-      },
-      error: function(status, error) {
-      }
-    });
-
-    if (!$(this).hasClass('has_preview')) {
-      $('#comment_content_preview').removeClass('hidden');
-      $('#comment_content').addClass('hidden');
-      $(this).addClass('has_preview');
-      $(this).html('Cancel');
-    }
-    else {
-      $('#comment_content_preview').addClass('hidden');
-      $('#comment_content').removeClass('hidden');
-      $(this).removeClass('has_preview');
-      $(this).html('Preview');
-      $('#comment_content_preview').html("");
-    }
-  });
   $(".div-content-main").css('min-height', $(window).height() - $('.div-footer').height() + "px");
 
   $('#divSearchIcon').click(function(e) {
@@ -137,6 +92,16 @@ $(document).ready(function() {
         }
       });
     }
+  });
+
+  $(window).on("scroll", function(e) {
+    if ($(this).scrollTop() > ($('.div-left-card-img').height())) {
+      console.log("sss");
+      $('#divCategory').addClass("div-category-fix");
+    } else {
+      $('#divCategory').removeClass("div-category-fix");
+    }
+
   });
 });
 

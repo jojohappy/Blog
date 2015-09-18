@@ -16,5 +16,7 @@
 <div class="div-tag-cloud">
     <%= tag_cloud %>
 </div>
-<a href="/blog/<%= @blog.id.to_s %>" class="btn-edit btn btn-danger">Cancel</a>
-<%= _form.submit "Submit", :class => "btn-edit btn btn-primary" %>
+<div class="div-edit-action">
+    <a href="/blog/<%= @blog.id.to_s %>" class="btn-cancel btn-edit btn btn-danger">Cancel</a>
+    <%= _form.submit "Submit", :class => "btn-submit btn-edit btn btn-primary" %>
+</div>

@@ -1,99 +1,113 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
-		<link rel="shortcut icon" media="screen" type="image/x-icon" href="/images/favicon.ico" />
-		<%= stylesheet_link_tag 'font-awesome.css', 'bootstrap.min.css',  'common.css', 'index.css' %>
-		<%= javascript_include_tag 'jquery.min.js', 'bootstrap.min.js', 'index.js' %>
-	</head>
-	<body>
-		<div class="div-content">
-			<div class="div-content-main div-content-main-padding">
-				<div class="div-content-m">
-					<div class="div-header">
-						<div id="divSearchForm" class="div-search-form form-group">
-							<form action="/search" method="get" accept-charset="utf-8" class="search-form">
-			                    <button type="submit" class="search-icon fa fa-search"> </button>
-			                    <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
-			                </form>
-		                </div>
-		                <div class="div-m-form">
-		                	<div id="divMenu" class="menu-icon fa fa-bars"> </div>
-		                	<span id="spanBlogTitle" class="span-blog-title"><%= APP_CONFIG['site_second_title'] %></span>
-		                	<div id="divSearch" class="search-m-icon fa fa-search"> </div>
-		                </div>
-					</div>
-					<div id="divLeft" class="div-left">
-						<div class="div-login">
-							<% unless account_login? %>
-					          	<a href="/login">+ login</a>
-					        <% else %>
-					          	<div class="div-logined">
-									<img class="img-login-user" src="/images/admin.png"/>
-									<span><%= current_account.name %></span>
-									<a href="/admin/blog/new_blog">New Blog</a>
-							  	</div>
-					        <% end %>
-						</div>
-						<div id="divLeftPortrait" class="div-left-portrait">
-							<div class="div-portrait">
-								<div class="div-img-portrait">
-									<img class="img-portrait" src="/images/my.png"/>
-								</div>
-							</div>
-							<ul class="person-info">
-								<li><span class="span-myname"><%= APP_CONFIG['author'] %></span></li>
-								<li><span class="span-career"><%= APP_CONFIG['my_career'] %></span></li>
-								<li><span class="span-location fa fa-map-marker">&nbsp; <%= APP_CONFIG['location'] %></span></li>
-							</ul>
-						</div>
-						<div id="divCategory" class="div-category">
-							<ul>
-								<li><a href="/"><i class="fa fa-home fa-fw"></i><span>&nbsp; Home</span></a></li>
-								<!-- <li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li> -->
-								<li><a href="/archives"><i class="fa fa-archive fa-fw"></i><span>&nbsp; Archive</span></a></li>
-								<li><a href="/tags"><i class="fa fa-tags fa-fw"></i><span>&nbsp; Tags</span></a></li>
-								<li><a href="/about"><i class="fa fa-user fa-fw"></i><span>&nbsp; About</span></a></li>
-								<% if account_login? %>
-									<li><a href="javascript::void(0)" class="a-logout"><i class="fa fa-sign-out fa-fw"></i><span>&nbsp; Logout</span></a></li>
-								<% end %>
-							</ul>
-						</div>
-					</div>
-					<div class="div-wrap">
-						<div class="div-wrap-header">
-							<div id="divSearchForm" class="div-search-form form-group">
-								<form action="/search" method="get" accept-charset="utf-8" class="search-form">
-				                    <div id="divSearchIcon" class="search-icon fa fa-search"> </div>
-				                    <input class="search-form-input-t search-form-input" type="text" name="q" value="" placeholder="Search">
-				                </form>
-			                </div>
-		                </div>
-						<%= yield %>
-						<% if nil != @index_flag %> 
-							<div class="load-more" style="display:none;">
-								<button type="button" class="load-more-posts btn btn-default">Load more</button>
-							</div>
-						<% end %>
-					</div>
-					
-				</div>
-			</div>
-			<div class="div-footer">
-				<div class="div-social-links">
-					<ul class="social-links">
-					  	<li><a class="github" href="https://github.com/jojohappy"></a></li>
-					    <li><a class="weibo" href="http://weibo.com/u/1908395681/home?wvr=5"></a></li>
-					    <li><a class="googleplus" href="https://plus.google.com/+DreamCrystal"></a></li>
-					    <li><a class="email" href="mailto:sarahdj0917@gmail.com"></a></li>
-					</ul>
-				</div>
-				<div class="div-copyright">
-					<div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
-				</div>
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
+        <link rel="shortcut icon" media="screen" type="image/x-icon" href="/images/favicon.ico" />
+        <%= stylesheet_link_tag 'font-awesome.css', 'common.css', 'index.css' %>
+        <%= javascript_include_tag 'jquery.min.js', 'index.js' %>
+    </head>
+    <body>
+        <div class="div-content">
+            <div class="div-content-main div-content-main-padding">
+                <div class="div-content-m">
+                    <div class="div-header-m">
+                        <div id="divSearchForm" class="div-search-form form-group">
+                            <form action="/search" method="get" accept-charset="utf-8" class="search-form">
+                                <button type="submit" class="search-icon fa fa-search"> </button>
+                                <input class="search-form-input form-control" type="text" name="q" value="" placeholder="Search">
+                            </form>
+                        </div>
+                        <div class="div-m-form">
+                            <div id="divMenu" class="menu-icon fa fa-bars"> </div>
+                            <span id="spanBlogTitle" class="span-blog-title"><%= APP_CONFIG['site_second_title'] %></span>
+                            <div id="divSearch" class="search-m-icon fa fa-search"> </div>
+                        </div>
+                    </div>
+                    <div id="divLeft" class="div-left-card">
+                        <div id="divLeftPortrait" class="div-left-portrait">
+                            <div class="div-left-card-img">
+                                <div class="div-header">
+                                    <div class="div-login">
+                                        <% unless account_login? %>
+                                            <a href="/login">+ login</a>
+                                        <% else %>
+                                            <div class="div-logined">
+                                                <img class="img-login-user" src="/images/admin.png"/>
+                                                <span><%= current_account.name %></span>
+                                                <a href="/admin/blog/new_blog">New Blog</a>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                    <div class="div-wrap-header">
+                                        <div id="divSearchForm" class="div-search-form form-group">
+                                            <form action="/search" method="get" accept-charset="utf-8" class="search-form">
+                                                <div id="divSearchIcon" class="search-icon fa fa-search"> </div>
+                                                <input class="search-form-input-t search-form-input" type="text" name="q" value="" placeholder="Search">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div-img-m">
+                                </div>
+                                <span class="span-myname"><%= APP_CONFIG['author'] %></span>
+                                <div class="div-left-card-content-m">
+                                    <span class="span-career"><%= APP_CONFIG['my_career'] %></span>
+                                    <span class="span-location fa fa-map-marker"><%= APP_CONFIG['location'] %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div-category-over">
+                            <div id="divCategory" class="div-category">
+                                <ul>
+                                    <li><a href="/"><span>Home</span></a></li>
+                                    <!-- <li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li> -->
+                                    <li><a href="/archives"><span>Archive</span></a></li>
+                                    <li><a href="/tags"><span>Tags</span></a></li>
+                                    <li><a href="/about"><span>About</span></a></li>
+                                    <% if account_login? %>
+                                        <li><a href="javascript::void(0)" class="a-logout"><span>Logout</span></a></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-wrap">
+                        <%= yield %>
+                        <% if nil != @index_flag %> 
+                            <div class="load-more" style="display:none;">
+                                <button type="button" class="load-more-posts btn btn-default">Load more</button>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="div-footer">
+                <div class="div-social-links">
+                    <ul class="social-links">
+                        <li><a class="github" href="https://github.com/jojohappy"></a></li>
+                        <li><a class="weibo" href="http://weibo.com/u/1908395681/home?wvr=5"></a></li>
+                        <li><a class="googleplus" href="https://plus.google.com/+DreamCrystal"></a></li>
+                        <li><a class="email" href="mailto:sarahdj0917@gmail.com"></a></li>
+                    </ul>
+                </div>
+                <div class="div-copyright">
+                    <div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'hairtaildai';
+            
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+        </script>
+    </body>
 </html>

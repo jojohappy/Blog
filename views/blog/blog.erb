@@ -1,42 +1,38 @@
 <% @index_flag = true %>
 
 <div class="div-post">
-	<div class="div-title">
-		<%= link_to blog.title, "blog/" + blog.id.to_s %>
-	</div>
-	<div class="div-date-sider">
-		<div class="ribbon">
-			<div class="container_div">
-				<div class="base">
-					<span class="span-date"><%= create_time_to_word blog.create_datetime.to_s %></span>
-				</div>
-				<div class="left_corner"></div>
-				<div class="right_corner"></div>
-			</div>
-		</div>
-	</div>
-	<div class="div-post-con">
-		<div class="markdown-body div-text">
-			<%= blog.content.to_s %>
-		</div>
-		<div class="div-info">
-			<%= link_to "Read more", "blog/" + blog.id.to_s, :class => "read-more-btn btn btn-primary read-more-w" %>
-			<%= link_to "...", "blog/" + blog.id.to_s, :class => "read-more-btn btn btn-primary read-more-m" %>
-			<div class="div-tag">
-				<i class="fa fa-tags"></i>
-				<ul class="post-tags-list">
-					<% blog.tag_list.each_with_index do |tag, index| %>
-					<li>
-						<% if index == 0 %>
-							<%= link_to "&nbsp; " + tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
-						<% else %>
-							<%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
-						<% end %>
-					</li>
-					<% end %>
-				</ul>
-			</div>
-			<%= link_to "&nbsp; " + blog.blog_comments.length.to_s, "blog/" + blog.id.to_s, :class => "a-comment-link fa fa-comment" %>
-		</div>
-	</div>
+    <div class="div-title">
+        <%= link_to blog.title, "blog/" + blog.id.to_s %>
+    </div>
+    <div class="div-date-sider">
+        <div class="ribbon">
+            <div class="container_div">
+                <div class="base">
+                    <span class="span-date"><%= create_time_to_word blog.create_datetime.to_s %></span>
+                </div>
+                <div class="left_corner"></div>
+                <div class="right_corner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div-post-con">
+        <div class="markdown-body div-text">
+            <%= blog.content.to_s %>
+        </div>
+        <div class="div-info">
+            <%= link_to "Read more", "blog/" + blog.id.to_s, :class => "read-more-btn btn btn-primary read-more-w" %>
+            <%= link_to "...", "blog/" + blog.id.to_s, :class => "read-more-btn btn btn-primary read-more-m" %>
+            <div class="div-tag">
+                <i class="fa fa-tags"></i>
+                <ul class="post-tags-list">
+                    <% blog.tag_list.each_with_index do |tag, index| %>
+                    <li>
+                        <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+            <%= link_to "", "blog/" + blog.id.to_s + "#disqus_thread", :class => "a-comment-link fa fa-comment" %>
+        </div>
+    </div>
 </div>
