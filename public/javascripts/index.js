@@ -42,11 +42,11 @@ $(document).ready(function() {
   $('#divSearchIcon').click(function(e) {
     if($(".search-form-input-t").css('display') == 'none') {
       $(".search-form-input-t").show();
-      $(".search-form-input-t").animate({"width": "+=176px"}, 200);
+      $(".search-form-input-t").animate({"width": "+=150px"}, 200);
       $(".search-form-input-t").focus();
     }
     else {
-      $(".search-form-input-t").animate({"width": "-=176px"}, 200, function() {
+      $(".search-form-input-t").animate({"width": "-=150px"}, 200, function() {
         $('.search-form-input-t').hide();
       });
     }
@@ -96,7 +96,6 @@ $(document).ready(function() {
 
   $(window).on("scroll", function(e) {
     if ($(this).scrollTop() > ($('.div-left-card-img').height())) {
-      console.log("sss");
       $('#divCategory').addClass("div-category-fix");
     } else {
       $('#divCategory').removeClass("div-category-fix");
