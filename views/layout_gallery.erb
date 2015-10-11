@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
+        <link rel="shortcut icon" media="screen" type="image/x-icon" href="/images/favicon.ico" />
+        <%= stylesheet_link_tag 'font-awesome.css', 'common.css', 'gallery.css' %>
+        <%= javascript_include_tag 'jquery.min.js', 'load-image.all.min.js', 'gallery.js' %>
+    </head>
+    <body>
+        <div class="div-main-container">
+            <%= yield %>
+            <div class="div-footer">
+                <div class="div-social-links">
+                    <ul class="social-links">
+                        <li><a class="github" href="https://github.com/jojohappy"></a></li>
+                        <li><a class="weibo" href="http://weibo.com/u/1908395681/home?wvr=5"></a></li>
+                        <li><a class="googleplus" href="https://plus.google.com/+DreamCrystal"></a></li>
+                        <li><a class="email" href="mailto:sarahdj0917@gmail.com"></a></li>
+                    </ul>
+                </div>
+                <div class="div-copyright">
+                    <div class="copyright-text"><%= APP_CONFIG['copyright'] %></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'hairtaildai';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+        </script>
+    </body>
+</html>

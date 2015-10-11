@@ -1,0 +1,12 @@
+<script>
+  $('.a-gallery-preview').each(function(index, el) {
+    var loadingImage = loadImage(
+        $(el).attr('img'),
+        function (img) {
+            $(el).append(img);
+        },
+        {maxWidth: 400,
+          canvas: true}
+    );
+  });
+</script>

@@ -44,14 +44,22 @@ class MichaelDaiSite < Sinatra::Application
         self.logger = logger
     end
 
+    # initialize acts_as_taggable_on
     ActsAsTaggableOn.remove_unused_tags = true
     ActsAsTaggableOn.strict_case_match = true
 
+    # initialize qiniu
+    require 'qiniu'
+    QINIU_CONFIG = YAML::load(File.open('./config/qiniu.yml'))[ENV['RACK_ENV']]
+    Qiniu.establish_connection! :access_key => QINIU_CONFIG['access_key'],
+                            :secret_key => QINIU_CONFIG['secret_key']
+    set :qiniu_config, QINIU_CONFIG
+
     # load project config
-    APP_CONFIG = YAML.load_file(File.expand_path("../config", __FILE__) + '/app_config.yml')[ENV['RACK_ENV']]
+    APP_CONFIG = YAML.load_file(File.open('./config/app_config.yml'))[ENV['RACK_ENV']]
 
     # autoload directory
-    %w{models apps helpers libs}.each do |dir|
+    %w{models helpers apps libs}.each do |dir|
       Dir.glob(File.expand_path("../#{dir}", __FILE__) + '/**/*.rb').each do |file|
         require file
       end

@@ -32,12 +32,6 @@
                                     <div class="div-login">
                                         <% unless account_login? %>
                                             <a href="/login">+ login</a>
-                                        <% else %>
-                                            <div class="div-logined">
-                                                <img class="img-login-user" src="/images/admin.png"/>
-                                                <span><%= current_account.name %></span>
-                                                <a href="/admin/blog/new_blog">New Blog</a>
-                                            </div>
                                         <% end %>
                                     </div>
                                     <div class="div-wrap-header">
@@ -62,7 +56,7 @@
                             <div id="divCategory" class="div-category">
                                 <ul>
                                     <li><a href="/"><span>Home</span></a></li>
-                                    <!-- <li><a href="/gallery.html"><i class="fa fa-instagram fa-fw"></i><span>&nbsp; Gallery</span></a></li> -->
+                                    <li><a href="/gallery"><span>Gallery</span></a></li>
                                     <li><a href="/archives"><span>Archive</span></a></li>
                                     <li><a href="/tags"><span>Tags</span></a></li>
                                     <li><a href="/about"><span>About</span></a></li>
@@ -75,7 +69,7 @@
                     </div>
                     <div class="div-wrap">
                         <%= yield %>
-                        <% if nil != @index_flag %> 
+                        <% if nil != @index_flag %>
                             <div class="load-more" style="display:none;">
                                 <button type="button" class="load-more-posts btn btn-default">Load more</button>
                             </div>
@@ -100,7 +94,7 @@
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
             var disqus_shortname = 'hairtaildai';
-            
+
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function () {
                 var s = document.createElement('script'); s.async = true;

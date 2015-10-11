@@ -5,7 +5,7 @@ class Blogs < ActiveRecord::Base
     belongs_to :blog_contents, :dependent => :destroy
 
     validates :title, :presence => true
-    validates :title, :length => {:in => 1..100}
+    validates :title, :length => {:in => 1..255}
     validates :md_file_url, :presence => true
 
     delegate :content, :to => :blog_contents, :allow_nil => true

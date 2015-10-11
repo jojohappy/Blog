@@ -1,0 +1,43 @@
+<div class="div-p-content">
+    <div class="div-gallery-back">
+        <a href="/gallery"><i class="fa fa-arrow-left"> </i></a>
+    </div>
+    <div class="div-detail-content">
+        <div class="div-detail-wrapper">
+            <div class="div-gallery-title" style="background: url('<%= QINIU_CONFIG['domain'] + @gallery.cover %>') center / cover;">
+                <h2 class="gallery-title__text"><%= @gallery.title %></h2>
+            </div>
+            <div class="div-gallery-info">
+                <span><%= create_time_to_word @gallery.create_datetime.to_s %></span>
+                <div class="div-detail-action">
+                    <a href="javascript:void(0);" class="a-gallery__action a-ripple" id="<%= @gallery.id.to_s %>">
+                       <i class="fa fa-heart"></i>
+                        <%= @gallery.ripple %>
+                    </a>
+                </div>
+            </div>
+            <div class="div-gallerys">
+                <%= partial 'gallery/_gallery_gallerys', :collection => @gallery.gallery_gallerys %>
+            </div>
+            <% if account_login? %>
+                <div class="div-info">
+                    <%= link_to "Delete", "javascript::void(0)", :class => "a-admin-link a-delete-gallery", :id => @gallery.id.to_s %>
+                    <%= link_to "Edit", "/admin/gallery/" + @gallery.id.to_s + "/edit", :class => "a-admin-link" %>
+                </div>
+            <% end %>
+            <div id="disqus_thread" class="div-gallery-comments"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'hairtaildai';
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+</div>

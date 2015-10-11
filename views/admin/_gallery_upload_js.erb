@@ -1,0 +1,152 @@
+<script>
+  var uploader_config = {
+    runtimes: 'html5,flash,html4',    //上传模式,依次退化
+    uptoken_url: '/admin/gallery/uptoken',
+    domain: '<%= QINIU_CONFIG["domain"] %>',
+    container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+    max_file_size: '100mb',           //最大文件体积限制
+    flash_swf_url: '',  //引入flash,相对路径
+    max_retries: 3,                   //上传失败最大重试次数
+    dragdrop: true,                   //开启可拖曳上传
+    drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+    chunk_size: '4mb',                //分块上传时，每片的体积
+    auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+  };
+
+  var _CREATE_GALLERY = 1;
+  var _EDIT_GALLERY = 2;
+
+  var cover_uploader = Qiniu.uploader($.extend({}, uploader_config, {
+    browse_button: 'divAddGalleryCover',
+    init: {
+        'FilesAdded': function(up, files) {
+          $('#divAddGalleryCover').prepend('<div class="div-upload-progress" id="divCoverProgress"></div>');
+          plupload.each(files, function(file) {});
+        },
+        'BeforeUpload': function(up, file) {
+          // 每个文件上传前,处理相关的事情
+        },
+        'UploadProgress': function(up, file) {
+          // 每个文件上传时,处理相关的事情
+          $('#divCoverProgress').css('height', file.percent + '%');
+          $('#divAddGalleryCover > span').html(file.percent + '%');
+        },
+        'FileUploaded': function(up, file, info) {
+          var domain = up.getOption('domain');
+          var res = jQuery.parseJSON(info);
+          var sourceLink = domain + res.key;
+          $('#divAddGalleryCover > span').html('+');
+          $('#divAddGalleryCover').hide();
+          $('.div-gallery-cover').prepend('<div class="div-cover-img div-gallery-create"><img class="img-loaded" src="' + sourceLink + '" width="100%" height="auto" /><div class="div-gallery-key"><span class="span-gallery-key">' + res.key + '</span><span class="span-cover-delete"><i class="fa fa-trash-o"></i></span></div></div>');
+          $('.div-cover-img').append('<input type="hidden" name="gallerys[cover]" value="' + res.key + '"/>');
+          $('.span-cover-delete').unbind('click').on('click', deleteCoverHandler);
+        },
+        'Error': function(up, err, errTip) {
+
+        },
+        'UploadComplete': function() {
+
+        },
+        'Key': function(up, file) {
+          return file.name;
+        }
+    }
+  }));
+
+  var Q2 = new QiniuJsSDK();
+  var gallerys_uploader = Q2.uploader($.extend({}, uploader_config, {
+    browse_button: 'divAddGallery',
+    init: {
+        'FilesAdded': function(up, files) {
+          $('#divAddGallery').prepend('<div class="div-upload-progress" id="divGalleryProgress"></div>');
+          plupload.each(files, function(file) {});
+        },
+        'BeforeUpload': function(up, file) {
+          // 每个文件上传前,处理相关的事情
+        },
+        'UploadProgress': function(up, file) {
+          // 每个文件上传时,处理相关的事情
+          $('#divGalleryProgress').css('height', file.percent + '%');
+          $('#divAddGallery > span').html(file.percent + '%');
+        },
+        'FileUploaded': function(up, file, info) {
+          var domain = up.getOption('domain');
+          var res = jQuery.parseJSON(info);
+          var sourceLink = domain + res.key;
+          var count = $('.div-add-gallery-uploaded').length;
+          $('#divGalleryProgress').remove();
+          $('#divAddGallery > span').html('+');
+          $('.div-gallery-list').prepend('<div class="div-add-gallery-uploaded div-gallery-create"><img class="img-loaded" src="' + sourceLink + '" width="100%" height="100%" /><div class="div-gallery-key"><span class="span-gallery-key">' + res.key + '</span><span class="span-gallery-delete"><i class="fa fa-trash-o"></i></span></div><input type="hidden" name="gallerys[gallerys][][key]" value="' + res.key + '" /><input type="hidden" name="gallerys[gallerys][][orders]" value="' + count + '" /></div>');
+          $('.span-gallery-delete').unbind('click').on('click', deleteGallerysHandler);
+        },
+        'Error': function(up, err, errTip) {
+
+        },
+        'UploadComplete': function() {
+
+        },
+        'Key': function(up, file) {
+          return file.name;
+        }
+    }
+  }));
+
+  function actionType(top) {
+    <% if request.url.match(/.*\/new_gallery/) %>
+    return _CREATE_GALLERY;
+    <% else %>
+    if($(top).hasClass('div-gallery-create'))
+      return _CREATE_GALLERY;
+    else
+      return _EDIT_GALLERY;
+    <% end %>
+  }
+
+  function confirmDelete() {
+    return window.confirm("确定要删除吗?");
+  }
+
+  function deleteCoverHandler(e) {
+    if (!confirmDelete()) {
+      return;
+    }
+    var key = $(e.target).parent().parent().find(".span-gallery-key").html();
+    var type = actionType($('.div-cover-img'));
+    $('.div-cover-img').prepend('<div class="div-delete-circle"><i class="fa fa-circle-o-notch fa-spin"></i></div>');
+    deleteRequest(key, type, function() {
+      $('.div-gallery-cover div:first-child').remove();
+      $('#divAddGalleryCover').css('display', 'inline-block');
+    });
+  }
+
+  function deleteGallerysHandler(e) {
+    if (!confirmDelete()) {
+      return;
+    }
+    var top = $(e.target).parent().parent().parent();
+    var key = $(e.target).parent().parent().find(".span-gallery-key").html();
+    var type = actionType(top);
+    top.prepend('<div class="div-delete-circle"><i class="fa fa-circle-o-notch fa-spin"></i></div>');
+    deleteRequest(key, type, function() {
+      top.remove();
+    });
+  }
+
+  function deleteRequest(key, type, done) {
+    $.ajax({
+      url: '/admin/gallery/gallerys/' + key,
+      method: 'delete',
+      dataType: 'json',
+      data: {type: type},
+      success: function(data) {
+        done();
+      },
+      error: function(status, error) {
+        done();
+      }
+    });
+  }
+
+  $('.span-gallery-delete').unbind('click').on('click', deleteGallerysHandler);
+  $('.span-cover-delete').unbind('click').on('click', deleteCoverHandler);
+</script>

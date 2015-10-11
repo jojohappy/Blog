@@ -25,7 +25,7 @@ helpers do
       return @current_account if @current_account
       return @current_account = Accounts.find_by_id(session[:account_id]) if session[:account_id]
     end
-    
+
     def account_login?
       current_account ? true : false
     end

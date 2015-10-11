@@ -63,7 +63,7 @@ $(document).ready(function() {
 
   $('.a-delete-blog').click(function() {
     var r = confirm("Delete this Blog?");
-    if (r === true) {
+    if (r) {
       blogid = $(this).attr('id');
       $.ajax({
         url: '/admin/blog/' + blogid,

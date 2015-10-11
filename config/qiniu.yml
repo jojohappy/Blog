@@ -1,0 +1,16 @@
+default: &default
+  access_key: {{ qiniu_access_key }}
+  secret_key: {{ qiniu_secret_key }}
+  bucket: {{ qiniu_bucket }}
+  domain: {{ qiniu_domain }}
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+
+

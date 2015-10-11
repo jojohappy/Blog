@@ -2,3 +2,7 @@
 tmp/**/*
 .DS_Store
 md/*
+plupload.dev.js
+moxie.js
+Moxie.swf
+qiniu_dev.yml

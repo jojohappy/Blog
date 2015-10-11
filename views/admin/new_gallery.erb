@@ -1,0 +1,43 @@
+<div class="div-edit-content">
+    <div class="div-gallery-back">
+        <a href="/gallery"><i class="fa fa-arrow-left"> </i></a>
+    </div>
+    <div class="div-detail-content">
+        <div class="div-detail-wrapper">
+            <div class="div-edit-gallery-content" id="container">
+                <% form_for @gallery, url('admin/gallery') do |f| %>
+                    <div class="div-edit-gallery-title">
+                        <h4>Title</h4>
+                        <%= f.text_field :title, :class => "form-control text-edit", :placeholder => "Title", :value => @gallery.title %>
+                    </div>
+                    <div class="div-edit-gallery-cover">
+                        <h4>Cover</h4>
+                        <div class="div-gallery-select div-gallery-cover">
+                            <div class="div-add-gallery" id="divAddGalleryCover">
+                                <span>+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-edit-gallerys">
+                        <h4>Gallerys</h4>
+                        <div class="div-gallery-select div-gallery-list">
+                            <div class="div-add-gallery" id="divAddGallery">
+                                <span>+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-edit-action">
+                        <% if @gallery.id? %>
+                            <a href="/gallery/<%= @gallery.id.to_s %>" class="btn-cancel btn-edit btn btn-danger">Cancel</a>
+                        <% else %>
+                            <a href="/gallery" class="btn-cancel btn-edit btn btn-danger">Cancel</a>
+                        <% end %>
+                        <%= f.submit "Submit", :class => "btn-submit btn-edit btn btn-primary" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<%= javascript_include_tag 'plupload.full.min.js', 'qiniu.min.js' %>
+<%= partial 'admin/_gallery_upload_js' %>

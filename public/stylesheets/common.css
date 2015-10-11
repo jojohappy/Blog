@@ -1,108 +1,39 @@
 @charset "utf-8";
-
-/* Light */
-@font-face {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 300;
-    src: local('Roboto Light'), local('Roboto-Light'), url("../fonts/Roboto-Light.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto";
-    font-style: italic;
-    font-weight: 300;
-    src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url("../fonts/Roboto-LightItalic.ttf") format('truetype');
-}
-
-/* Normal */
-@font-face {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto Regular'), local('Roboto-Regular'), url("../fonts/Roboto-Regular.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto";
-    font-style: italic;
-    font-weight: 400;
-    src: local('Roboto Italic'), local('Roboto-Italic'), url("../fonts/Roboto-Italic.ttf") format('truetype');
-}
-
-/* Bold */
-@font-face {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Bold'), local('Roboto-Bold'), url("../fonts/Roboto-Bold.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto";
-    font-style: italic;
-    font-weight: 700;
-    src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url("../fonts/Roboto-BoldItalic.ttf") format('truetype');
-}
-
-@font-face {
-    font-family: "Source Han Sans";
-    font-style: normal;
-    font-weight: 700;
-    src: url("../fonts/SourceHanSansCN-Bold.otf");
-}
-
-@font-face {
-    font-family: "Source Han Sans";
-    font-style: normal;
-    font-weight: 300;
-    src: url("../fonts/SourceHanSansCN-Light.otf");
-}
-
-@font-face {
-    font-family: "Source Han Sans";
-    font-style: normal;
-    font-weight: 400;
-    src: url("../fonts/SourceHanSansCN-Normal.otf");
-}
-
-html {
-    color:#666;
-    background-color: #1c1c1c;
-}
-
-body {
-    background: url('../images/bg.jpg') repeat;
-}
-
-body, select, button {
-    font-size: 12px;
-    /*font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei", "微软雅黑";*/
-    /*font-family: Verdana, "Bitstream Vera Sans","Microsoft YaHei", "微软雅黑";*/
-    font-family: Roboto "Source Han Sans";
-    line-height: 24px;
-    vertical-align: baseline;
-}
-
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td {
-    margin:0;
-    padding:0;
-}
-
-a, a:link {
-    text-decoration: none;
-}
-
-a {
-    color: #337ab7;
-    background-color: transparent;
-}
-
-a:focus, a:hover {
-    color: #23527c;
-}
-
-a:active, a:hover {
-    outline: 0;
-}
-
-input, pre {
-    font-family: Roboto "Source Han Sans";
-}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:300;src:local('Roboto Light'),local(Roboto-Light),url(../fonts/Roboto-Light.ttf) format("truetype")}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:300;src:local('Roboto Light Italic'),local(Roboto-LightItalic),url(../fonts/Roboto-LightItalic.ttf) format("truetype")}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:400;src:local('Roboto Regular'),local(Roboto-Regular),url(../fonts/Roboto-Regular.ttf) format("truetype")}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:400;src:local('Roboto Italic'),local(Roboto-Italic),url(../fonts/Roboto-Italic.ttf) format("truetype")}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:700;src:local('Roboto Bold'),local(Roboto-Bold),url(../fonts/Roboto-Bold.ttf) format("truetype")}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:700;src:local('Roboto Bold Italic'),local(Roboto-BoldItalic),url(../fonts/Roboto-BoldItalic.ttf) format("truetype")}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:700;src:url(../fonts/SourceHanSansCN-Bold.otf)}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:300;src:url(../fonts/SourceHanSansCN-Light.otf)}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:400;src:url(../fonts/SourceHanSansCN-Normal.otf)}
+html{color:#666;background-color:#1c1c1c}
+body{background:url(../images/bg.jpg) repeat}
+body,select,button{font-size:12px;font-family:Roboto "Source Han Sans";line-height:24px;vertical-align:baseline}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}
+a,a:link{text-decoration:none}
+a{color:#337ab7;background-color:transparent}
+a:focus,a:hover{color:#23527c}
+a:active,a:hover{outline:0}
+input,pre{font-family:Roboto "Source Han Sans"}
+h4{font-size:16px}
+.form-control{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;box-sizing:border-box}
+.form-control:focus{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}
+.btn-primary{border-color:#2e6da4;color:#fff;background-color:#337ab7}
+.btn-primary:hover{color:#fff;background-color:#286090;border-color:#204d74}
+.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}
+.btn:hover{text-decoration:none}
+.btn-danger{color:#fff;background-color:#d9534f;border-color:#d43f3a}
+.btn-danger.active,.btn-danger.focus,.btn-danger:active,.btn-danger:focus,.btn-danger:hover{color:#fff;background-color:#c9302c;border-color:#ac2925}
+.btn-cancel{padding:6px 0}
+.text-edit{margin-top:10px;margin-bottom:10px}
+.btn-edit{right:0;width:90px;position:absolute}
+.btn-submit{right:100px}
+.div-info{padding:12px 5px 12px 10px;border-top:1px solid #dfdfdf;color:#999}
+.a-admin-link{float:right;margin-right:10px;color:inherit}
+.div-fab{position:fixed;display:block;right:0;bottom:0;margin-right:30px;margin-bottom:40px;z-index:900}
+.fab-button{border-radius:50%;font-size:30px;height:45px;margin:auto;min-width:45px;width:45px;overflow:hidden;box-shadow:0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);position:relative;line-height:normal;background:#ff4081;color:#fff;font-weight:300;text-transform:uppercase;letter-spacing:0;display:block;border:none;outline:none;cursor:pointer;text-decoration:none;text-align:center;vertical-align:middle}
+.fab-button span{display:block;line-height:45px}
+.fab-button:active{box-shadow:0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);color:#fff}
+.fab-button:hover,.fab-button:focus{color:#fff}

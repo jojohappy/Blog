@@ -1,0 +1,50 @@
+<% if index == 1 %>
+<div class="div-gallery-post post-first">
+    <div class="div-gallery-pointer-left">
+<% elsif index % 2 == 0 %>
+<div class="div-gallery-post post-right">
+    <div class="div-gallery-pointer-right">
+<% else %>
+<div class="div-gallery-post post-left">
+    <div class="div-gallery-pointer-left">
+<% end %>
+        <% if index % 2 == 0 %>
+            <div class="div-gallery-pointer__arrow-right">
+                <i class="fa fa-caret-left"></i>
+            </div>
+            <div class="div-gallery-pointer_point-right">
+                <div class="div-gallery-pointer_point">
+                </div>
+            </div>
+        <% else %>
+            <div class="div-gallery-pointer__arrow-left">
+                <i class="fa fa-caret-right"></i>
+            </div>
+            <div class="div-gallery-pointer__arrow-left-m">
+                <i class="fa fa-caret-left"></i>
+            </div>
+            <div class="div-gallery-pointer_point-left">
+                <div class="div-gallery-pointer_point">
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <a href="/gallery/<%= _gallery.id.to_s %>" class="div-gallery-title" style="background: url('<%= QINIU_CONFIG['domain'] + _gallery.cover %>') center / cover;">
+        <h2 class="gallery-title__text"><%= _gallery.title %></h2>
+    </a>
+    <div class="div-gallery-info">
+        <span><%= create_time_to_word _gallery.create_datetime.to_s %></span>
+        <div class="div-gallery-num">
+            <a href="/gallery/<%= _gallery.id.to_s %>">
+                <span><%= _gallery.gallery_gallerys.size %></span>
+            </a>
+        </div>
+    </div>
+    <div class="div-gallery-action">
+        <a href="javascript:void(0);" class="a-gallery__action a-ripple" id="<%= _gallery.id.to_s %>">
+           <i class="fa fa-heart"></i>
+            <%= _gallery.ripple %>
+        </a>
+        <%= link_to "", "/gallery/" + _gallery.id.to_s + "#disqus_thread", :class => "fa fa-comment a-gallery__action a-comment" %>
+    </div>
+</div>

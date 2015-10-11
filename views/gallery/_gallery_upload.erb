@@ -1,0 +1,11 @@
+<div class="div-add-gallery-uploaded">
+    <img class="img-loaded" src="<%= QINIU_CONFIG['domain'] + _gallery_upload.key %>" width="100%" height="100%">
+    <div class="div-gallery-key">
+        <span class="span-gallery-key"><%= _gallery_upload.key %></span>
+        <span class="span-gallery-delete">
+            <i class="fa fa-trash-o"></i>
+        </span>
+    </div>
+    <input type="hidden" name="gallerys[gallerys][][key]" value="<%= _gallery_upload.key %>">
+    <input type="hidden" name="gallerys[gallerys][][orders]" value="<%= _gallery_upload.orders %>">
+</div>

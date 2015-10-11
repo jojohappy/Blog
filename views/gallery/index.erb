@@ -1,0 +1,27 @@
+<div class="div-p-content">
+    <div class="div-gallery-back">
+        <a href="/"><i class="fa fa-arrow-left"> </i></a>
+    </div>
+    <div class="div-content">
+        <div class="div-timeline-central"></div>
+        <div class="div-wrapper">
+            <div class="div-timeline-start">
+                <div class="div-start-avatar">
+                    <span> </span>
+                </div>
+            </div>
+            <div class="div-post-content">
+                <% @gallerys.each_with_index {|gallery, index| %>
+                    <%= partial 'gallery/_gallery', :locals => {_gallery: gallery, index: index + 1} %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<% if account_login? %>
+    <div class="div-fab">
+        <a href="/admin/gallery/new_gallery" class="fab-button">
+          <span>+</span>
+        </a>
+    </div>
+<% end %>
