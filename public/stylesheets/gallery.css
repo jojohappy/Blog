@@ -31,7 +31,7 @@ a:active,a:hover{outline:0}
 .div-gallery-num{float:right}
 .div-gallery-num span{background:url(../images/bg-number.png) no-repeat;background-size:32px 32px;width:32px;height:32px;display:inline-block;line-height:32px;color:rgba(0,0,0,.54);text-align:center}
 .div-gallery-action{border-top:1px solid rgba(0,0,0,.1);font-size:15px;line-height:33px;width:100%;background-color:transparent;padding:12px 16px;box-sizing:border-box}
-.a-gallery__action{display:inline-block;color:#7C8186;font-family:Roboto "Source Han Sans";-webkit-font-smoothing:initial;-moz-osx-font-smoothing:initial;transform:initial}
+.a-gallery__action{display:inline-block;color:#7C8186;font-family:Roboto, "Source Han Sans";-webkit-font-smoothing:initial;-moz-osx-font-smoothing:initial;transform:initial}
 .a-gallery__action:hover{color:#3E4144}
 .a-comment{margin-left:15px}
 .div-detail-action{float:right}
