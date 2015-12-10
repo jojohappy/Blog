@@ -38,7 +38,7 @@ end
 post '/admin/blog/preview' do
     data = CGI::unescapeHTML(params[:data].to_s.strip)
     data = data.gsub(/<p>/, '').gsub(/<\/p>/, '<br>')
-    data = data.gsub(/<br>/, "\n")
+    data = data.gsub(/<br>/, "\n").gsub(/&nbsp;/, ' ')
     Common.render_markdown(data)
 end
 
