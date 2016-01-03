@@ -1,56 +1,59 @@
 <%= stylesheet_link_tag 'github.css' %>
-<div class="div-post">
-    <div class="div-title">
-        <span><%= @blog.title %></span>
-    </div>
-    <div class="div-date-sider">
-        <div class="ribbon">
-            <div class="container_div">
-                <div class="base">
-                    <span class="span-date"><%= create_time_to_word @blog.create_datetime.to_s %></span>
+<div class="div-blog-wrap">
+    <div class="div-post">
+        <div class="div-title">
+            <span><%= @blog.title %></span>
+        </div>
+        <div class="div-date-sider">
+            <div class="ribbon">
+                <div class="container_div">
+                    <div class="base">
+                        <span class="span-date"><%= create_time_to_word @blog.create_datetime.to_s %></span>
+                    </div>
+                    <div class="left_corner"></div>
+                    <div class="right_corner"></div>
                 </div>
-                <div class="left_corner"></div>
-                <div class="right_corner"></div>
             </div>
         </div>
-    </div>
-    <div class="div-post-con">
-        <div class="markdown-body div-text">
-            <%= @blog.md_content %>
-        </div>
-        <div class="div-info">
-            <div class="div-tag">
-                <i class="fa fa-tag"></i>
-                <ul class="post-tags-list">
-                    <% @blog.tag_list.each_with_index do |tag, index| %>
-                    <li>
-                        <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
-                    </li>
-                    <% end %>
-                </ul>
+        <div class="div-post-con">
+            <div class="markdown-body div-text">
+                <%= @blog.md_content %>
             </div>
-            <% if account_login? %>
-                <%= link_to "Delete", "javascript::void(0)", :id => @blog.id.to_s, :class => "a-admin-link a-delete-blog" %>
-                <%= link_to "Edit", "/admin/blog/" + @blog.id.to_s + "/edit", :class => "a-admin-link" %>
-            <% end %>
+            <div class="div-info">
+                <div class="div-tag">
+                    <i class="fa fa-tag"></i>
+                    <ul class="post-tags-list">
+                        <% @blog.tag_list.each_with_index do |tag, index| %>
+                        <li>
+                            <%= link_to tag.to_s, "/tags/" + tag.to_s, :class => "a-tag" %>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% if account_login? %>
+                    <%= link_to "Delete", "javascript::void(0)", :id => @blog.id.to_s, :class => "a-admin-link a-delete-blog" %>
+                    <%= link_to "Edit", "/admin/blog/" + @blog.id.to_s + "/edit", :class => "a-admin-link" %>
+                <% end %>
+            </div>
         </div>
+        <div class="markdown-body div-donate">
+            <p>希望得到您的捐助，让我有120%的动力更新Blog，谢谢~</p>
+            <img src="/images/apw3d6rhnbs2c0uad8.png">
+        </div>
+
+        <div id="disqus_thread" class="div-pages-comments"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'hairtaildai';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </div>
-    <div class="markdown-body div-donate">
-        <p>希望得到您的捐助，让我有120%的动力更新Blog，谢谢~</p>
-        <img src="/images/apw3d6rhnbs2c0uad8.png">
-    </div>
-    
-    <div id="disqus_thread" class="div-pages-comments"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'hairtaildai';
-        
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
+<%= partial 'home/right_slider' %>

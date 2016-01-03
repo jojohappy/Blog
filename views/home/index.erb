@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'github.css' %>
-<%= partial 'blog/blog', :collection => @blogs %>
+<div class="div-blog-wrap">
+	<%= partial 'blog/blog', :collection => @blogs %>
+</div>
 <% if account_login? %>
     <div class="div-fab">
         <a href="/admin/blog/new_blog" class="fab-button">
@@ -7,3 +9,4 @@
         </a>
     </div>
 <% end %>
+<%= partial 'home/right_slider' %>

@@ -1,5 +1,18 @@
-get '/' do
+def get_all_content()
     @blogs = Blogs.order('id Desc')
+    @blog_tags = {}
+    tags = ActsAsTaggableOn::Tag.all
+    tags.each do |tag|
+        blogs = Blogs.tagged_with(tag.name).order('id DESC')
+        @blog_tags[tag.name] = blogs
+    end
+end
+
+before /^\/((?!admin|gallery))/ do
+    get_all_content
+end
+
+get '/' do
     erb :'home/index'
 end
 

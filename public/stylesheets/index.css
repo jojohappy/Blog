@@ -86,7 +86,17 @@ hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}
 .nav-tabs>li.active>a,.nav-tabs>li.active>a:focus,.nav-tabs>li.active>a:hover{color:#555;cursor:default;background-color:#fff;border:1px solid #ddd;border-bottom-color:transparent}
 .nav-tabs>li>a{margin-right:2px;line-height:1.42857143;border:1px solid transparent;border-radius:4px 4px 0 0}
 .nav>li>a{position:relative;display:block;padding:10px 15px}
+.right-slider-h2{font-size:1.5em;text-align:left;font-weight:400;margin:1em 0 .6em;text-transform:uppercase}
+.div-wrap:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0px;
+}
+.span-right-slider-num{font-size:12px;color:#aaa;text-indent:-2em;line-height:1.8em}
 @media screen and (max-width: 500px) {
+.div-right-slider{display:none}
 .div-content-main-padding{padding:0}
 .div-header-m{height:50px;width:100%;background-color:#1b6ea1;box-shadow:0 2px 5px rgba(0,0,0,0.4)}
 .div-header{display:none}
@@ -112,7 +122,12 @@ hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}
 .div-copyright{padding:0;float:none;padding-top:55px}
 .div-footer{height:100px}
 }
+@media screen and (min-width: 1000px) {
+.div-blog-wrap {width: 730px;float: left}
+.div-right-slider {width: 200px;float: left;margin-left: 30px;margin-bottom: 50px}
+}
 @media only screen and (min-width: 501px) {
+.div-right-slider{float: left;margin-left: 30px;margin-bottom: 50px}
 .div-wrap{max-width:1000px;padding:10px 20px 20px;margin:0 auto}
 .div-content-main-padding{padding:0}
 .div-header-m{display:none}

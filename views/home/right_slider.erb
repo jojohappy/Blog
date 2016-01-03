@@ -1,0 +1,50 @@
+<div class="div-right-slider">
+    <h2 class="right-slider-h2">TAGS</h2>
+    <% @blog_tags.each do |key, _tag| %>
+        <p>
+            <%= link_to key, "/tags/" + key, :class => "archive-blog-title" %>
+            &nbsp;
+            <span class="span-right-slider-num">
+                <%= _tag.length.to_s %>
+            </span>
+        </p>
+    <% end %>
+    <h2 class="right-slider-h2">ARCHIVES</h2>
+    <% @ar_count = 0 %>
+    <% @blogs.each_with_index do |blog, index| %>
+        <% if blog.create_datetime.strftime('%^B %Y').to_s != @date_archive %>
+            <% if index != 0 %>
+                <p>
+                    <%= link_to @date_archive, "/archives", :class => "archive-blog-title" %>
+                    &nbsp;
+                    <span class="span-right-slider-num">
+                        <%= @ar_count %>
+                    </span>
+                </p>
+                <% @ar_count = 0 %>
+            <% end %>
+            <% @date_archive = blog.create_datetime.strftime('%^B %Y').to_s %>
+        <% end %>
+        <% @ar_count += 1 %>
+        <% if index == @blogs.length - 1 %>
+            <p>
+                <%= link_to @date_archive, "/archives", :class => "archive-blog-title" %>
+                &nbsp;
+                <span class="span-right-slider-num">
+                    <%= @ar_count %>
+                </span>
+            </p>
+        <% end %>
+    <% end %>
+    <h2 class="right-slider-h2">LINKS</h2>
+    <p>
+        <%= link_to 'robbin的自言自语', "http://robbinfan.com/", :class => "archive-blog-title" %>
+    </p>
+    <p>
+        <%= link_to '禅', "http://www.bingjie.me/", :class => "archive-blog-title" %>
+    </p>
+    <p>
+        <%= link_to '小米运维部', "http://noops.me/", :class => "archive-blog-title" %>
+    </p>
+
+</div>
