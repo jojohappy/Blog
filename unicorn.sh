@@ -10,7 +10,7 @@ pid="tmp/pids/unicorn.pid"
 
 case "$1" in
   start)
-    unicorn -c unicorn.rb -E production -D
+    unicorn -c unicorn.rb -E development -D
     ;;
   stop)
     kill `cat $pid`
