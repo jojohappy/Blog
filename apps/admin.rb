@@ -31,7 +31,7 @@ post '/admin/blog/upload_image' do
     local_file_name = SecureRandom.uuid + File.extname(params[:original_filename])
     local_file_path = settings.public_folder + '/images/upload/' + local_file_name
     FileUtils.cp tempfile.path(), local_file_path
-    FileUtils.chmod 644, local_file_path
+    FileUtils.chmod 0644, local_file_path
     {:success => 'true', :file_path => '/images/upload/' + local_file_name}.to_json
 end
 
