@@ -5,9 +5,9 @@
 @font-face{font-family:"Roboto";font-style:italic;font-weight:400;src:local('Roboto Italic'),local(Roboto-Italic),url(../fonts/Roboto-Italic.ttf) format("truetype")}
 @font-face{font-family:"Roboto";font-style:normal;font-weight:700;src:local('Roboto Bold'),local(Roboto-Bold),url(../fonts/Roboto-Bold.ttf) format("truetype")}
 @font-face{font-family:"Roboto";font-style:italic;font-weight:700;src:local('Roboto Bold Italic'),local(Roboto-BoldItalic),url(../fonts/Roboto-BoldItalic.ttf) format("truetype")}
-@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:700;src:url(../fonts/SourceHanSansCN-Bold.otf)}
-@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:300;src:url(../fonts/SourceHanSansCN-Light.otf)}
-@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:400;src:url(../fonts/SourceHanSansCN-Normal.otf)}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:700;src:url(../fonts/SourceHanSansSC-Bold.eot);src:url('../fonts/SourceHanSansSC-Bold.eot?#iefix') format('embedded-opentype'),url('../fonts/SourceHanSansSC-Bold.woff') format('woff'),url('../fonts/SourceHanSansSC-Bold.ttf') format('truetype'),url('../fonts/SourceHanSansSC-Bold.svg') format('svg');}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:300;src:url(../fonts/SourceHanSansSC-Light.eot);src:url('../fonts/SourceHanSansSC-Light.eot?#iefix') format('embedded-opentype'),url('../fonts/SourceHanSansSC-Light.woff') format('woff'),url('../fonts/SourceHanSansSC-Light.ttf') format('truetype'),url('../fonts/SourceHanSansSC-Light.svg') format('svg');}
+@font-face{font-family:"Source Han Sans";font-style:normal;font-weight:400;src:url(../fonts/SourceHanSansSC-Normal.eot);src:url('../fonts/SourceHanSansSC-Normal.eot?#iefix') format('embedded-opentype'),url('../fonts/SourceHanSansSC-Normal.woff') format('woff'),url('../fonts/SourceHanSansSC-Normal.ttf') format('truetype'),url('../fonts/SourceHanSansSC-Normal.svg') format('svg');}
 html{color:#666;background-color:#1c1c1c}
 body{background:url(../images/bg.jpg) repeat}
 body,select,button{font-size:12px;font-family:Roboto, "Source Han Sans";line-height:24px;vertical-align:baseline}
