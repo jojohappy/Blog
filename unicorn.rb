@@ -6,7 +6,7 @@ working_directory @dir
 timeout 30
 
 listen "/tmp/unicorn.sock", :backlog => 64
-listen 8081, :tcp_nopush => true
+listen "127.0.0.1:8081", :tcp_nopush => true
 
 pid "#{@dir}/tmp/pids/unicorn.pid"
 
