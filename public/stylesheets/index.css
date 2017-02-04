@@ -74,7 +74,7 @@ hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}
 .div-donate{margin-left:30px}
 .div-dnoate{margin-bottom:30px}
 .div-card{padding:20px;box-shadow:0 2px 5px rgba(0,0,0,0.4);background-color:#fff;min-height:602px;margin-bottom:30px;border-radius:2px}
-.div-about{font-size:13px}
+.div-about{font-size:13px;margin-bottom:30px;}
 .div-header{height:55px}
 .div-edit-action{position:relative;height:40px;padding-top:20px}
 .nav-tabs{border-bottom:1px solid #ddd}
